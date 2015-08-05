@@ -25,6 +25,10 @@ return [
                 ],
             ],
         ],
+        'request'=>[
+        'class' => 'common\components\Request',
+           'web'=> '/frontend/web'
+        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
