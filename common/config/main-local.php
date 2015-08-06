@@ -26,4 +26,12 @@ return [
             ]
         ],
     ],
+    'modules' => [
+        'gii' => [
+            'class' => 'yii\gii\Module',
+        ],
+        'auth' => [
+            'class' => 'app\modules\auth\Module',
+        ],
+    ]
 ];
