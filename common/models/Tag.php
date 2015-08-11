@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\helpers;
 
 /**
  * This is the model class for table "tag".
@@ -33,9 +34,21 @@ class Tag extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tag', 'count', 'topics', 'shares', 'labels', 'created', 'updated'], 'required'],
+            [['tag'], 'required'],
             [['count', 'topics', 'shares', 'labels', 'created', 'updated', 'active'], 'integer'],
-            [['tag'], 'string', 'max' => 255]
+            [['tag','alias'], 'string', 'max' => 255]
+        ];
+    }
+    
+    public function behaviors()
+    {
+        return [
+            'alias' => [
+                'class' => 'common\behaviors\Alias',
+                'in_attribute' => 'tag',
+                'out_attribute' => 'alias',
+                'translit' => true
+            ]
         ];
     }
 
@@ -47,6 +60,7 @@ class Tag extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'tag' => Yii::t('app', 'Tag'),
+            'alias' => Yii::t('app', 'Alias'),
             'count' => Yii::t('app', 'Count'),
             'topics' => Yii::t('app', 'Topics'),
             'shares' => Yii::t('app', 'Shares'),
@@ -55,5 +69,14 @@ class Tag extends \yii\db\ActiveRecord
             'updated' => Yii::t('app', 'Updated'),
             'active' => Yii::t('app', 'Active'),
         ];
+    }
+    
+    public function beforeSave($insert)
+    {
+        if (!isset($this->created)) {
+            $this->created = time();
+        }
+        $this->updated = time();
+        return parent::beforeSave($insert);
     }
 }
