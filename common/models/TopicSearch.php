@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Tag;
+use common\models\Topic;
 
 /**
- * TagSearch represents the model behind the search form about `common\models\Tag`.
+ * TopicSearch represents the model behind the search form about `common\models\Topic`.
  */
-class TagSearch extends Tag
+class TopicSearch extends Topic
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class TagSearch extends Tag
     public function rules()
     {
         return [
-            [['id', 'count', 'topics', 'shares', 'labels', 'created', 'updated', 'active'], 'integer'],
-            [['tag'], 'safe'],
+            [['id', 'owner', 'created', 'updated', 'active'], 'integer'],
+            [['h1', 'alias', 'title', 'keywords', 'description', 'announce', 'content'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class TagSearch extends Tag
      */
     public function search($params)
     {
-        $query = Tag::find();
+        $query = Topic::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -57,16 +57,19 @@ class TagSearch extends Tag
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'count' => $this->count,
-            'topics' => $this->topics,
-            'shares' => $this->shares,
-            'labels' => $this->labels,
+            'owner' => $this->owner,
             'created' => $this->created,
             'updated' => $this->updated,
             'active' => $this->active,
         ]);
 
-        $query->andFilterWhere(['like', 'tag', $this->tag]);
+        $query->andFilterWhere(['like', 'h1', $this->h1])
+            ->andFilterWhere(['like', 'alias', $this->alias])
+            ->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'keywords', $this->keywords])
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'announce', $this->announce])
+            ->andFilterWhere(['like', 'content', $this->content]);
 
         return $dataProvider;
     }

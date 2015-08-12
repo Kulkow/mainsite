@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Tag */
+/* @var $model common\models\Topic */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Tags'), 'url' => ['index']];
+$this->title = $model->title;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Topics'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="tag-view">
+<div class="topic-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -29,16 +29,23 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'tag',
+            'h1',
             'alias',
-            'count',
-            'topics',
-            'shares',
-            'labels',
+            'title',
+            'keywords',
+            'description',
+            'announce:ntext',
+            'content:ntext',
+            'owner',
             'created',
             'updated',
             'active',
         ],
     ]) ?>
+    <div class="tags">
+        Тэги: <?php foreach($model->getTopicTags()->all() as $post) : ?>
+            <?= $post->getTag()->one()->title ?>
+        <?php endforeach; ?>
+    </div>
 
 </div>

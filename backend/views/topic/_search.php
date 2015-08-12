@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\TagSearch */
+/* @var $model common\models\TopicSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="tag-search">
+<div class="topic-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -17,17 +17,21 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'tag') ?>
+    <?= $form->field($model, 'h1') ?>
 
     <?= $form->field($model, 'alias') ?>
 
-    <? //= $form->field($model, 'count') ?>
+    <?= $form->field($model, 'title') ?>
 
-    <? //= $form->field($model, 'topics') ?>
+    <?= $form->field($model, 'keywords') ?>
 
-    <?php // echo $form->field($model, 'shares') ?>
+    <?php // echo $form->field($model, 'description') ?>
 
-    <?php // echo $form->field($model, 'labels') ?>
+    <?php // echo $form->field($model, 'announce') ?>
+
+    <?php // echo $form->field($model, 'content') ?>
+
+    <?php // echo $form->field($model, 'owner') ?>
 
     <?php // echo $form->field($model, 'created') ?>
 
