@@ -35,7 +35,7 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'tags')->listBox(
-        ArrayHelper::map($model->getTags(), 'id', 'title'),
+        ArrayHelper::map($model->getTags(), 'id', 'tag'),
         [
                 'multiple' => true
         ]

@@ -107,6 +107,13 @@ class Topic extends \yii\db\ActiveRecord
        );
    }
    
+   public function getTagss()
+   {
+       return ArrayHelper::getColumn(
+           $this->getTopicTags()->all(), 'tag_id'
+       );
+   }
+   
    /**
     * @inheritdoc
     */
