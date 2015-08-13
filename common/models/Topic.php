@@ -103,15 +103,17 @@ class Topic extends \yii\db\ActiveRecord
    public function getTags()
    {
        return ArrayHelper::getColumn(
-           $this->getTopicTags()->all(), 'tag_id'
+           //$this->getTopicTags()->all(), 'tag_id'
+           Tag::findAll(['active' => 1]), 'id'
        );
    }
    
    public function getTagss()
    {
-       return ArrayHelper::getColumn(
+       /*return ArrayHelper::getColumn(
            $this->getTopicTags()->all(), 'tag_id'
-       );
+       );*/
+       return Tag::findAll(['active' => 1]);
    }
    
    /**

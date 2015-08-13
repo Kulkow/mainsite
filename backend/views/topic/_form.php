@@ -40,6 +40,7 @@ use yii\helpers\ArrayHelper;
                 'multiple' => true
         ]
     ) ?>
+    <? print_r($model->getTagss()); ?>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
