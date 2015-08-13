@@ -3,7 +3,9 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "topic".
@@ -17,15 +19,21 @@ use yii\helpers\ArrayHelper;
  * @property string $announce
  * @property string $content
  * @property integer $owner
+ * @property integer $image
  * @property integer $created
  * @property integer $updated
  * @property integer $active
  *
+ * @property TagTopic[] $tagTopics
  * @property User $owner0
- * @property TopicTags[] $topicTags
  */
 class Topic extends \yii\db\ActiveRecord
 {
+    
+     /**
+     * Список тэгов, закреплённых за постом.
+     * @var array
+     */
     protected $tags = [];
     
     /**
@@ -36,20 +44,41 @@ class Topic extends \yii\db\ActiveRecord
         return 'topic';
     }
 
+    public function behaviors()
+    {
+        return [
+            'alias' => [
+                'class' => 'common\behaviors\Alias',
+                'in_attribute' => 'h1',
+                'out_attribute' => 'alias',
+                'translit' => true
+            ],
+            'timestampBehavior' => [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created', 'updated'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'updated',
+                ]
+            ],
+        ];
+    }
+    
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['h1', 'alias', 'title', 'keywords', 'description', 'owner', 'created', 'updated'], 'required'],
+            [['h1', 'alias', 'title'], 'required'],
             [['announce', 'content'], 'string'],
-            [['owner', 'created', 'updated', 'active'], 'integer'],
+            [['owner', 'image', 'created', 'updated', 'active'], 'integer'],
             [['h1', 'alias', 'keywords', 'description'], 'string', 'max' => 255],
             [['title'], 'string', 'max' => 90],
             [['alias'], 'unique']
         ];
     }
+    
+    
 
     /**
      * @inheritdoc
@@ -66,6 +95,7 @@ class Topic extends \yii\db\ActiveRecord
             'announce' => Yii::t('app', 'Announce'),
             'content' => Yii::t('app', 'Content'),
             'owner' => Yii::t('app', 'Owner'),
+            'image' => Yii::t('app', 'Image'),
             'created' => Yii::t('app', 'Created'),
             'updated' => Yii::t('app', 'Updated'),
             'active' => Yii::t('app', 'Active'),
@@ -75,60 +105,69 @@ class Topic extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getOwner0()
+    public function getTagTopics()
     {
-        return $this->hasOne(User::className(), ['id' => 'owner']);
+        return $this->hasMany(TagTopic::className(), ['topic_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTopicTags()
+    public function getOwner0()
     {
-        return $this->hasMany(TopicTags::className(), ['topic_id' => 'id']);
+        return $this->hasOne(User::className(), ['id' => 'owner']);
     }
     
-    /**
-    * Устанавлиает тэги поста.
-    * @param $tagsId
-    */
-   public function setTags($tagsId)
-   {
-       $this->tags = (array) $tagsId;
-   }
-    
-   /**
-    * Возвращает массив идентификаторов тэгов.
-    */
-   public function getTags()
-   {
-       return ArrayHelper::getColumn(
-           //$this->getTopicTags()->all(), 'tag_id'
-           Tag::findAll(['active' => 1]), 'id'
-       );
-   }
-   
-   public function getTagss()
-   {
-       /*return ArrayHelper::getColumn(
-           $this->getTopicTags()->all(), 'tag_id'
-       );*/
-       return Tag::findAll(['active' => 1]);
-   }
-   
-   /**
-    * @inheritdoc
-    */
-   public function afterSave($insert, $changedAttributes)
-   {
-        TopicTags::deleteAll(['topic_id' => $this->id]);
-        $values = [];
-        foreach ($this->tags as $id) {
-            $values[] = [$this->id, $id];
-        }
-        self::getDb()->createCommand()
-            ->batchInsert(TopicTags::tableName(), ['topic_id', 'tag_id'], $values)->execute();
      
+    /**
+     * Устанавлиает тэги поста.
+     * @param $tagsId
+     */
+    public function setTags($tagsId)
+    {
+        $this->tags = (array) $tagsId;
+    }
+     
+    /**
+     * Возвращает массив идентификаторов тэгов.
+     */
+    public function getTags()
+    {
+        return ArrayHelper::getColumn(
+            $this->getTagTopics()->all(), 'tag_id'
+        );
+    }
+    
+    	public function beforeSave($insert)
+        {
+            if(parent::beforeSave($insert)) {
+                // Проверяем если это новая запись.
+                if ($this->isNewRecord) {
+                    // Определяем автора в случае его отсутсвия.
+                    if (!$this->owner) {
+                        $this->owner = Yii::$app->user->identity->id;
+                    }
+                    if (!$this->title) {
+                        $this->title = $this->h1;
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+    
+    
+    public function afterSave($insert, $changedAttributes)
+    {
+        TagTopic::deleteAll(['topic_id' => $this->id]);
+        if (is_array($this->tags) && !empty($this->tags)) {
+            $values = [];
+            foreach ($this->tags as $id) {
+                $values[] = [$this->id, $id];
+            }
+            self::getDb()->createCommand()
+            ->batchInsert(TagTopic::tableName(), ['topic_id', 'tag_id'], $values)->execute();
+        }
         parent::afterSave($insert, $changedAttributes);
-   }
+    }
 }

@@ -17,18 +17,19 @@ class m150811_193228_topic extends Migration
             'h1' => Schema::TYPE_STRING . '(255) NOT NULL',
             'alias' => Schema::TYPE_STRING . '(255) NOT NULL UNIQUE',
             'title' => Schema::TYPE_STRING . '(90) NOT NULL',
-            'keywords' => Schema::TYPE_STRING . '(255) NOT NULL',
-            'description' => Schema::TYPE_STRING . '(255) NOT NULL',
+            'keywords' => Schema::TYPE_STRING . '(255) default NULL',
+            'description' => Schema::TYPE_STRING . '(255) default NULL',
             'announce' => Schema::TYPE_TEXT . '',
             'content' => Schema::TYPE_TEXT . '',
             'owner' => Schema::TYPE_INTEGER . '(11) NOT NULL',
+            'image' => Schema::TYPE_INTEGER . '(11) default NULL',
             'created' => Schema::TYPE_INTEGER . '(11) NOT NULL',
             'updated' => Schema::TYPE_INTEGER . '(11) NOT NULL',
             'active' => 'tinyint(1) default NULL',
             'INDEX (owner)',
             'CONSTRAINT owner FOREIGN KEY (owner) REFERENCES user(id) ON DELETE CASCADE',
         ], $tableOptions);
-        $this->createTable('{{%topic_tags}}', [
+        $this->createTable('{{%tag_topic}}', [
             'id' => Schema::TYPE_PK,
             'topic_id' => Schema::TYPE_INTEGER . '(11) NOT NULL',
             'tag_id' => Schema::TYPE_INTEGER . '(11) NOT NULL',
@@ -43,7 +44,7 @@ class m150811_193228_topic extends Migration
     {
         echo "m150811_193228_topic cannot be reverted.\n";
         $this->dropTable('{{%topic}}');
-        $this->dropTable('{{%topic_tags}}');
+        $this->dropTable('{{%tag_topic}}');
         //return false;
     }
 

@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
+use common\models\Tag;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Topic */
@@ -21,12 +22,6 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'owner')->textInput() ?>
-
-    <?= $form->field($model, 'created')->textInput() ?>
-
-    <?= $form->field($model, 'updated')->textInput() ?>
-
     <?= $form->field($model, 'active')->checkbox() ?>
     
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
@@ -35,12 +30,11 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'tags')->listBox(
-        ArrayHelper::map($model->getTags(), 'id', 'tag'),
+        ArrayHelper::map(Tag::find()->all(), 'id', 'tag'),
         [
                 'multiple' => true
         ]
     ) ?>
-    <? print_r($model->getTagss()); ?>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
