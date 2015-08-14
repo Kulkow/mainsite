@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\behaviors\BlameableBehavior;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 
@@ -60,6 +61,11 @@ class Topic extends \yii\db\ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'updated',
                 ]
             ],
+            'ownerBehavior'  =>[
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'owner',
+                'updatedByAttribute' => 'editor',
+          ],
         ];
     }
     
@@ -71,7 +77,7 @@ class Topic extends \yii\db\ActiveRecord
         return [
             [['h1', 'alias', 'title'], 'required'],
             [['announce', 'content'], 'string'],
-            [['owner', 'image', 'created', 'updated', 'active'], 'integer'],
+            [['owner','editor', 'image', 'created', 'updated', 'active'], 'integer'],
             [['h1', 'alias', 'keywords', 'description'], 'string', 'max' => 255],
             [['title'], 'string', 'max' => 90],
             [['alias'], 'unique'],
@@ -114,11 +120,15 @@ class Topic extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getOwner0()
+    public function getOwner()
     {
         return $this->hasOne(User::className(), ['id' => 'owner']);
     }
     
+    public function getEditor()
+    {
+        return $this->hasOne(User::className(), ['id' => 'editor']);
+    }
      
     /**
      * Устанавлиает тэги поста.
@@ -145,9 +155,9 @@ class Topic extends \yii\db\ActiveRecord
                 // Проверяем если это новая запись.
                 if ($this->isNewRecord) {
                     // Определяем автора в случае его отсутсвия.
-                    if (!$this->owner) {
-                        $this->owner = Yii::$app->user->identity->id;
-                    }
+                    //if (!$this->owner) {
+                    //    $this->owner = Yii::$app->user->identity->id;
+                    //}
                     if (!$this->title) {
                         $this->title = $this->h1;
                     }

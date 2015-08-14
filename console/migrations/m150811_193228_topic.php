@@ -22,12 +22,14 @@ class m150811_193228_topic extends Migration
             'announce' => Schema::TYPE_TEXT . '',
             'content' => Schema::TYPE_TEXT . '',
             'owner' => Schema::TYPE_INTEGER . '(11) NOT NULL',
+            'editor' => Schema::TYPE_INTEGER . '(11) NOT NULL',
             'image' => Schema::TYPE_INTEGER . '(11) default NULL',
             'created' => Schema::TYPE_INTEGER . '(11) NOT NULL',
             'updated' => Schema::TYPE_INTEGER . '(11) NOT NULL',
             'active' => 'tinyint(1) default NULL',
             'INDEX (owner)',
             'CONSTRAINT owner FOREIGN KEY (owner) REFERENCES user(id) ON DELETE CASCADE',
+            'CONSTRAINT editor FOREIGN KEY (editor) REFERENCES user(id) ON DELETE CASCADE',
         ], $tableOptions);
         $this->createTable('{{%tag_topic}}', [
             'id' => Schema::TYPE_PK,
