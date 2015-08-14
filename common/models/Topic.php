@@ -74,7 +74,8 @@ class Topic extends \yii\db\ActiveRecord
             [['owner', 'image', 'created', 'updated', 'active'], 'integer'],
             [['h1', 'alias', 'keywords', 'description'], 'string', 'max' => 255],
             [['title'], 'string', 'max' => 90],
-            [['alias'], 'unique']
+            [['alias'], 'unique'],
+            [['tags'], 'safe'],
         ];
     }
     

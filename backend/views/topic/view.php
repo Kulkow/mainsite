@@ -43,9 +43,10 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
     <div class="tags">
-        Тэги: <?php foreach($model->getTopicTags()->all() as $post) : ?>
-            <?= $post->getTag()->one()->title ?>
+        Тэги: <?php $atags =  [];foreach($model->getTagTopics()->all() as $post) : ?>
+            <?php $atags[] = $post->getTag()->one()->tag ?>
         <?php endforeach; ?>
+        <?php echo implode(', ',$atags) ?>
     </div>
 
 </div>

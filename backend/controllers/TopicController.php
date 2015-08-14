@@ -5,9 +5,11 @@ namespace backend\controllers;
 use Yii;
 use common\models\Topic;
 use common\models\TopicSearch;
+use common\models\Tag;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+
 
 /**
  * TopicController implements the CRUD actions for Topic model.
@@ -67,6 +69,7 @@ class TopicController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'tags'  => Tag::find()->all(),
             ]);
         }
     }
@@ -86,6 +89,7 @@ class TopicController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'tags'  => Tag::find()->all(),
             ]);
         }
     }

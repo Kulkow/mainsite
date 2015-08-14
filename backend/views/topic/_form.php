@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use common\models\Tag;
+
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Topic */
@@ -30,7 +30,7 @@ use common\models\Tag;
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'tags')->listBox(
-        ArrayHelper::map(Tag::find()->all(), 'id', 'tag'),
+        ArrayHelper::map($tags, 'id', 'tag'),
         [
                 'multiple' => true
         ]
