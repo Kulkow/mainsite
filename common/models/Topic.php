@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
+use common\behaviors\SeoBehavior;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 
@@ -65,7 +66,10 @@ class Topic extends \yii\db\ActiveRecord
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => 'owner',
                 'updatedByAttribute' => 'editor',
-          ],
+            ],
+            'SeoBehavior'  =>[
+                'class' => SeoBehavior::className(),
+            ],
         ];
     }
     
