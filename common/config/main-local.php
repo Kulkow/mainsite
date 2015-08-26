@@ -33,5 +33,9 @@ return [
         'auth' => [
             'class' => 'app\modules\auth\Module',
         ],
+           'treemanager' =>  [
+            'class' => '\kartik\tree\Module',
+            // other module settings, refer detailed documentation
+        ]
     ]
 ];
