@@ -408,12 +408,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-tree-manager.git",
-                "reference": "bf45a22f6bd9fe11bbe8378d1a4129867c9c5bbb"
+                "reference": "78e547ee8e0916a4d7c7675ffffe3787e2161d9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-tree-manager/zipball/bf45a22f6bd9fe11bbe8378d1a4129867c9c5bbb",
-                "reference": "bf45a22f6bd9fe11bbe8378d1a4129867c9c5bbb",
+                "url": "https://api.github.com/repos/kartik-v/yii2-tree-manager/zipball/78e547ee8e0916a4d7c7675ffffe3787e2161d9d",
+                "reference": "78e547ee8e0916a4d7c7675ffffe3787e2161d9d",
                 "shasum": ""
             },
             "require": {
@@ -451,7 +451,7 @@
                 "tree",
                 "treeview"
             ],
-            "time": "2015-08-10 16:44:56"
+            "time": "2015-08-30 13:36:20"
         },
         {
             "name": "kartik-v/yii2-widget-activeform",

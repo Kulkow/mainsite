@@ -37,7 +37,6 @@ class CategoryController extends \kartik\tree\controllers\NodeController
     {
         //$searchModel = new TopicSearch();
         //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('index');
     }
 
