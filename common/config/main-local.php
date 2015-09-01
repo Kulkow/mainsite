@@ -25,6 +25,12 @@ return [
                 'module/<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
             ]
         ],
+        'user' => [
+            'identityClass' => 'common\models\User', 
+            'enableAutoLogin' => true,
+             // 'loginUrl' => ['user/login'],
+             // ...
+        ]
     ],
     'modules' => [
         'gii' => [

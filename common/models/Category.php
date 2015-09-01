@@ -8,6 +8,7 @@ use yii\helpers\ArrayHelper;*/
 namespace common\models;
  
 use Yii;
+use common\models\User;
  
 class Category extends \kartik\tree\models\Tree
 {
@@ -26,9 +27,11 @@ class Category extends \kartik\tree\models\Tree
      */
     public function isDisabled()
     {
-        if (Yii::$app->user->id !== 'admin') {
+        /*
+        if (Yii::$app->user->role !== User::ROLE_ADMIN) {
             return true;
         }
+        */
         return parent::isDisabled();
     }
 }
