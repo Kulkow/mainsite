@@ -1,6 +1,7 @@
 <?
 use yii\helpers\Html;
 use yii\grid\GridView;
+use kartik\tree\Module;
 
 use kartik\tree\TreeView;
 use common\models\Category;
@@ -18,6 +19,13 @@ echo TreeView::widget([
     'softDelete' => true,       // defaults to true
     'cacheSettings' => [        
         'enableCache' => true   // defaults to true
+    ],
+    'nodeAddlViews' => [
+        Module::VIEW_PART_1 => '',
+        Module::VIEW_PART_2 => '@backend/views/category/seo',
+        Module::VIEW_PART_3 => '',
+        Module::VIEW_PART_4 => '',
+        Module::VIEW_PART_5 => '',
     ]
 ]);
 ?>

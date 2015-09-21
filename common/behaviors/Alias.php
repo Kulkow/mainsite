@@ -7,6 +7,7 @@ use yii;
 use yii\base\Behavior;
 use yii\db\ActiveRecord;
 use yii\helpers\Inflector;
+use common\helpers\StringHelper;
 
 
 class Alias extends Behavior
@@ -14,7 +15,7 @@ class Alias extends Behavior
     public $in_attribute = 'name';
     public $out_attribute = 'alias';
     public $translit = true;
-
+    
     public function events()
     {
         return [
@@ -47,7 +48,10 @@ class Alias extends Behavior
         if ( $this->translit ) {
             //return yii\helpers\Inflector::slug( TransliteratorHelper::progress( $alias ), '-', true );
             //return yii\helpers\Inflector::slug( yii\helpers\Inflector::transliterate( $alias ), '-', true );
-            return Inflector::slug($alias);
+            return strtolower(StringHelper::translit($alias));
+            //Inflector::slug($alias);
+            //var_dump($v);
+            //return Inflector::slug($alias);
         } else {
             return $this->alias( $alias, '-', true );
         }

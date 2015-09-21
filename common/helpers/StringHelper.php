@@ -4,8 +4,9 @@
  * @copyright Copyright (c) 2008 Yii Software LLC
  * @license http://www.yiiframework.com/license/
  */
-
 namespace common\helpers;
+use Yii;
+use yii\helpers\BaseStringHelper;
 
 /**
  * StringHelper
