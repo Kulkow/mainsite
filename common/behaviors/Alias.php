@@ -23,7 +23,7 @@ class Alias extends Behavior
         ];
     }
     
-    public function getAlias( $event )
+    public function getAlias()
     {
         if ( empty( $this->owner->{$this->out_attribute} ) ) {
             $this->owner->{$this->out_attribute} = $this->generateAlias( $this->owner->{$this->in_attribute} );
