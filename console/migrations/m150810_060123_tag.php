@@ -21,7 +21,7 @@ class m150810_060123_tag extends Migration
             'labels' => Schema::TYPE_INTEGER. ' default NULL',
             'created' => Schema::TYPE_INTEGER . ' NOT NULL',
             'updated' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'active' => 'tinyint(1) default NULL',
+            'active' => Schema::TYPE_SMALLINT .'(1) default NULL',
         ], $tableOptions);
     }
 

@@ -11,8 +11,8 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'language' => 'ru-RU',
-    'bootstrap' => ['log'],
-    'modules' => [],
+    'bootstrap' => ['log','debug'],
+    'modules' => ['debug' => 'yii\debug\Module',],
     'components' => [
         'user' => [
             'identityClass' => 'common\models\User',

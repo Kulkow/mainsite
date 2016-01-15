@@ -20,7 +20,22 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'announce')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
+    <?//= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
+    <?
+    echo yii\imperavi\Widget::widget([
+    'model' => $model,
+    'attribute' => 'content',
+
+    // or just for input field
+    //'name' => 'content',
+
+    // Some options, see http://imperavi.com/redactor/docs/
+    /*'options' => [
+        'toolbar' => false,
+        'css' => 'wym.css',
+    ],*/
+]);
+    ?>
 
     <?= $form->field($model, 'active')->checkbox() ?>
     

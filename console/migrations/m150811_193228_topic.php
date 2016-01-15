@@ -26,19 +26,19 @@ class m150811_193228_topic extends Migration
             'image' => Schema::TYPE_INTEGER . '(11) default NULL',
             'created' => Schema::TYPE_INTEGER . '(11) NOT NULL',
             'updated' => Schema::TYPE_INTEGER . '(11) NOT NULL',
-            'active' => 'tinyint(1) default NULL',
-            'INDEX (owner)',
-            'CONSTRAINT owner FOREIGN KEY (owner) REFERENCES user(id) ON DELETE CASCADE',
-            'CONSTRAINT editor FOREIGN KEY (editor) REFERENCES user(id) ON DELETE CASCADE',
+            'active' => Schema::TYPE_SMALLINT .'(1) default NULL',
+            //'INDEX (owner)',
+            'FOREIGN KEY (owner) REFERENCES "user"(id) ON DELETE CASCADE',
+            'FOREIGN KEY (editor) REFERENCES "user"(id) ON DELETE CASCADE',
         ], $tableOptions);
         $this->createTable('{{%tag_topic}}', [
             'id' => Schema::TYPE_PK,
             'topic_id' => Schema::TYPE_INTEGER . '(11) NOT NULL',
             'tag_id' => Schema::TYPE_INTEGER . '(11) NOT NULL',
-            'INDEX topic_ind (topic_id)',
-            'CONSTRAINT topic_ind FOREIGN KEY (topic_id) REFERENCES topic(id) ON DELETE CASCADE',
-            'INDEX tag_ind (tag_id)',
-            'CONSTRAINT tag_ind FOREIGN KEY (tag_id) REFERENCES tag(id) ON DELETE CASCADE'
+            //'INDEX topic_ind (topic_id)',
+            'FOREIGN KEY (topic_id) REFERENCES topic(id) ON DELETE CASCADE',
+            //'INDEX tag_ind (tag_id)',
+            'FOREIGN KEY (tag_id) REFERENCES tag(id) ON DELETE CASCADE'
         ], $tableOptions);
     }
 

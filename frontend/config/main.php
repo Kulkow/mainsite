@@ -9,7 +9,10 @@ $params = array_merge(
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'debug'],
+    'modules' => [
+        'debug' => 'yii\debug\Module',
+        ],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'user' => [
@@ -26,8 +29,18 @@ return [
             ],
         ],
         'request'=>[
-        'class' => 'common\components\Request',
-           'web'=> '/frontend/web'
+            'class' => 'common\components\Request',
+            'web'=> '/frontend/web'
+        ],
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+                'topics/page/<page:[\d]+>'=>'topic/list',
+                'topics'=>'topic/list',
+                'topic/<alias>'=>'topic/index',
+                '<controller>/<action>' => '<controller>/<action>',
+            ]
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

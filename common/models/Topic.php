@@ -8,6 +8,7 @@ use yii\behaviors\BlameableBehavior;
 use common\behaviors\SeoBehavior;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "topic".
@@ -133,6 +134,14 @@ class Topic extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'editor']);
     }
+    
+    /**
+     * @param $action
+     */
+    public function url($action = null)
+    {
+        return Url::toRoute('topic/'.$this->alias.($action ? '/'.$action : ''));
+    }
      
     /**
      * Устанавлиает тэги поста.
@@ -153,23 +162,46 @@ class Topic extends \yii\db\ActiveRecord
         );
     }
     
-    	public function beforeSave($insert)
-        {
-            if(parent::beforeSave($insert)) {
-                // Проверяем если это новая запись.
-                if ($this->isNewRecord) {
-                    // Определяем автора в случае его отсутсвия.
-                    //if (!$this->owner) {
-                    //    $this->owner = Yii::$app->user->identity->id;
-                    //}
-                    if (!$this->title) {
-                        $this->title = $this->h1;
-                    }
-                }
-                return true;
-            }
+    /**
+    * @ return array
+    **/
+    public function getTagsArray()
+    {
+        $sql = "SELECT
+                tg.*,t.topic_id
+                FROM tag as tg
+                LEFT JOIN tag_topic as t ON t.tag_id=tg.id
+                WHERE t.topic_id='".$this->id."'";
+        return self::findBySql($sql)->asArray()->all();
+    }
+    
+    public function getTopic($alias = null)
+    {
+        $topic = $this->findOne(['alias' => $alias]);
+        if(null === $topic){
             return false;
         }
+        $topic->tags;
+        return $topic;
+    }
+    
+    public function beforeSave($insert)
+    {
+        if(parent::beforeSave($insert)) {
+            // Проверяем если это новая запись.
+            if ($this->isNewRecord) {
+                // Определяем автора в случае его отсутсвия.
+                //if (!$this->owner) {
+                //    $this->owner = Yii::$app->user->identity->id;
+                //}
+                if (!$this->title) {
+                    $this->title = $this->h1;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
     
     
     public function afterSave($insert, $changedAttributes)
