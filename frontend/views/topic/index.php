@@ -8,7 +8,7 @@ $this->params['breadcrumbs'][] = [
             ];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<?php //if ($this->beginCache(1, ['enabled' => ! Yii::$app->request->get('cache')])) : ?>
+<?php if ($this->beginCache($topic->id, ['enabled' => ! Yii::$app->request->get('cache')])) : ?>
     <div class="topic">
         <h1><?php echo $topic->h1 ?></h1>
         <div class="topic__contenct">
@@ -26,5 +26,5 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <? endif ?>
     </div>
-    <?php //$this->endCache(); ?>
-<?php //endif ?>
+    <?php $this->endCache(); ?>
+<?php endif ?>

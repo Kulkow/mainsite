@@ -43,6 +43,12 @@ AppAsset::register($this);
                 $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
             } else {
+                if(Yii::$app->user->can('dashboard')){
+                    $menuItems[] = [
+                        'label' => 'Adminka',
+                        'url' => ['/admin'],
+                    ];
+                }
                 $menuItems[] = [
                     'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/site/logout'],

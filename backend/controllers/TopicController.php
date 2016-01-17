@@ -63,7 +63,7 @@ class TopicController extends Controller
     public function actionCreate()
     {
         $model = new Topic();
-
+        $model->loadDefaultValues();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

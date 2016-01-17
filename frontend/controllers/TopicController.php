@@ -7,6 +7,7 @@ use yii\caching\TagDependency;
 use yii\data\Pagination;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
+use yii\web\NotFoundHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -21,7 +22,22 @@ class TopicController extends Controller
      */
     public function behaviors()
     {
-        return [];
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions'=>['login','error'],
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                ],
+            ],
+        ];
     }
 
     /**
@@ -53,12 +69,10 @@ class TopicController extends Controller
         if(Yii::$app->request->get('cache')){
             $cacheKey = 'Topic:' . $alias;
             Yii::$app->cache->delete($cacheKey);
-            $cacheTagKey = 'Topic_tag:' . $alias;
-            Yii::$app->cache->delete($cacheTagKey);
         }
         $cacheKey = 'Topic:' . $alias;
         if (false === $topic = Yii::$app->cache->get($cacheKey)) {
-            if (null === $topic = Topic::findOne(['alias' => $alias])) {
+            if (null === $topic = Topic::find()->where(['alias' => $alias])->with('tags')->one()) {
                 throw new NotFoundHttpException;
             }
             Yii::$app->cache->set(
@@ -74,27 +88,9 @@ class TopicController extends Controller
                 )
             );
         }
-        $cacheTagKey = 'Topic_tag:' . $alias;
-        if (false === $tags = Yii::$app->cache->get($cacheTagKey)) {
-            if (null === $tags = $topic->getTagsArray()) {
-                throw new NotFoundHttpException;
-            }
-            Yii::$app->cache->set(
-                $cacheTagKey,
-                $tags,
-                86400,
-                new TagDependency(
-                    [
-                        'tags' => [
-                            
-                        ]
-                    ]
-                )
-            );
-        }
         return $this->render('index',[
                                     'topic'  => $topic,
-                                    'tags' => $tags
+                                    'tags' => $topic->tags
                                     ]);
     }
     

@@ -32,7 +32,8 @@ use yii\helpers\Url;
  */
 class Topic extends \yii\db\ActiveRecord
 {
-    
+    const STATUS_ACTIVE = 1;
+    const STATUS_HIDE = 0;
      /**
      * Список тэгов, закреплённых за постом.
      * @var array
@@ -80,7 +81,7 @@ class Topic extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['h1', 'alias', 'title'], 'required'],
+            [['h1', 'title'], 'required'],
             [['announce', 'content'], 'string'],
             [['owner','editor', 'image', 'created', 'updated', 'active'], 'integer'],
             [['h1', 'alias', 'keywords', 'description'], 'string', 'max' => 255],
@@ -115,11 +116,35 @@ class Topic extends \yii\db\ActiveRecord
     }
 
     /**
+     * @inheritdoc
+     */
+    public function fields()
+    {
+        return [
+            'id' => 'id',
+            'h1' => 'h1',
+            'alias' => 'alias',
+            'title' => 'title',
+            'keywords' => 'keywords',
+            'description' => 'description',
+            'announce' => 'announce',
+            'content' => 'content',
+            'owner' => 'owner',
+            'image' => 'image',
+            'created' => 'created',
+            'updated' => 'updated',
+            'active' => 'active',
+        ];
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getTagTopics()
     {
-        return $this->hasMany(TagTopic::className(), ['topic_id' => 'id']);
+        //return $this->hasMany(TagTopic::className(), ['topic_id' => 'id']);
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
+            ->viaTable('tag_topic', ['topic_id' => 'id']);
     }
 
     /**
@@ -157,9 +182,8 @@ class Topic extends \yii\db\ActiveRecord
      */
     public function getTags()
     {
-        return ArrayHelper::getColumn(
-            $this->getTagTopics()->all(), 'tag_id'
-        );
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
+            ->viaTable('tag_topic', ['topic_id' => 'id']);
     }
     
     /**

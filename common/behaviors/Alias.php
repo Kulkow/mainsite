@@ -25,7 +25,7 @@ class Alias extends Behavior
     
     public function getAlias()
     {
-        if ( empty( $this->owner->{$this->out_attribute} ) ) {
+        if (empty($this->owner->{$this->out_attribute} ) ) {
             $this->owner->{$this->out_attribute} = $this->generateAlias( $this->owner->{$this->in_attribute} );
         } else {
             $this->owner->{$this->out_attribute} = $this->generateAlias( $this->owner->{$this->out_attribute} );
@@ -45,7 +45,7 @@ class Alias extends Behavior
     
     private function slugify( $alias )
     {
-        if ( $this->translit ) {
+        if ( $this->translit ){
             //return yii\helpers\Inflector::slug( TransliteratorHelper::progress( $alias ), '-', true );
             //return yii\helpers\Inflector::slug( yii\helpers\Inflector::transliterate( $alias ), '-', true );
             return strtolower(StringHelper::translit($alias));
