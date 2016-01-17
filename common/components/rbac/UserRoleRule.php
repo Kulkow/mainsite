@@ -4,13 +4,25 @@ use Yii;
 use yii\rbac\Rule;
 use yii\helpers\ArrayHelper;
 use common\models\User;
+use yii\web\NotFoundHttpException;
 class UserRoleRule extends Rule
 {
     public $name = 'userRole';
     public function execute($user, $item, $params)
     {
         //Получаем массив пользователя из базы
-        $user = ArrayHelper::getValue($params, 'user', User::findOne($user));
+        $cacheUser = 'User_role:'.Yii::$app->user->id;
+        if (false === $_user = Yii::$app->cache->get($cacheUser)) {
+            if (null === $_user = User::findOne($user)) {
+                throw new NotFoundHttpException;
+            }
+            Yii::$app->cache->set(
+                $cacheUser,
+                $_user,
+                86400
+            );
+        }
+        $user = ArrayHelper::getValue($params, 'user', $_user);
         if ($user) {
             $role = $user->role; //Значение из поля role базы данных
             if ($item->name === 'admin') {
