@@ -14,6 +14,10 @@ return [
         'debug' => 'yii\debug\Module',
         ],
     'controllerNamespace' => 'frontend\controllers',
+    'aliases' => [
+        '@uploadroot' => $_SERVER['DOCUMENT_ROOT'].'/upload',
+        '@upload' => '/upload',
+    ],
     'components' => [
         'user' => [
             'identityClass' => 'common\models\User',

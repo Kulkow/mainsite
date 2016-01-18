@@ -1,4 +1,5 @@
 <?php
+use yii\helpers\Html;
 $this->registerMetaTag(['name' => 'description', 'content' => $topic->keywords]);
 $this->registerMetaTag(['name' => 'keywords', 'content' => $topic->description]);
 $this->title = $topic->title;
@@ -11,6 +12,11 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php if ($this->beginCache($topic->id, ['enabled' => ! Yii::$app->request->get('cache')])) : ?>
     <div class="topic">
         <h1><?php echo $topic->h1 ?></h1>
+        <? if(! empty($topic->preview)): ?>
+            <div class="topic_preview">
+                <?= Html::img($topic->getThumbUploadUrl('preview', 'big'), ['class' => 'img-thumbnail']) ?>
+            </div>
+        <? endif ?>
         <div class="topic__contenct">
             <?php echo $topic->content ?>
         </div>

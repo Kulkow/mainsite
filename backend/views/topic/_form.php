@@ -11,7 +11,7 @@ use yii\helpers\ArrayHelper;
 ?>
 
 <div class="topic-form">
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
     <?= $form->field($model, 'h1')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'alias')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'announce')->textarea(['rows' => 6]) ?>
@@ -31,6 +31,8 @@ use yii\helpers\ArrayHelper;
     ],*/
 ]);
     ?>
+    <?= Html::img($model->getThumbUploadUrl('preview', 'small'), ['class' => 'img-thumbnail']) ?>
+    <?= $form->field($model, 'preview')->fileInput(['accept' => 'image/*']) ?>
     <?= $form->field($model, 'active')->checkbox() ?>
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>

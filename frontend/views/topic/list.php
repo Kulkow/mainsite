@@ -1,5 +1,6 @@
 <?php
 use yii\widgets\LinkPager;
+use yii\helpers\Html;
 $this->title = 'Topics';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -7,6 +8,13 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php foreach ($topics as $topic) : ?>
     <div class="topic_item">
         <a href="<?php echo $topic->url() ?>" title="<?php echo $topic->title ?>"><?php echo $topic->title ?></a>
+        <? if(! empty($topic->preview)): ?>
+            <div class="topic_preview">
+                <a href="<?php echo $topic->url() ?>" title="<?php echo $topic->title ?>">
+                    <?= Html::img($topic->getThumbUploadUrl('preview', 'small'), ['class' => 'img-thumbnail']) ?>
+                </a>
+            </div>
+        <? endif ?>
         <div class="topic_announce">
             <?php echo $topic->announce ?>
         </div>

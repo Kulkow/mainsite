@@ -96,7 +96,6 @@ class TopicController extends Controller
     
     public function actionList()
     {
-        
         $query = Topic::find()->where(['active' => 1])->with('tags');
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize' => 3]);
@@ -104,7 +103,6 @@ class TopicController extends Controller
         if(Yii::$app->request->get('cache')){
             Yii::$app->cache->delete($cacheTopics);
         }
-        
         if (false === $topics = Yii::$app->cache->get($cacheTopics)) {
             if (null === $topics = $query->offset($pages->offset)->limit($pages->limit)->all()) {
                 throw new NotFoundHttpException;

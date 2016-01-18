@@ -1,6 +1,10 @@
 <?php
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+    'aliases' => [
+        '@uploadroot' => $_SERVER['DOCUMENT_ROOT'].'/upload',
+        '@upload' => '/upload',
+    ],
     'components' => [
         'authManager' => [
             'class' => 'yii\rbac\PhpManager',
@@ -10,9 +14,6 @@ return [
             'assignmentFile' => '@common/components/rbac/assignments.php',
             'ruleFile' => '@common/components/rbac/rules.php'
         ],
-        /*'cache' => [
-            'class' => 'yii\caching\FileCache',
-        ],*/
         'cache' => [
             'class' => 'yii\caching\MemCache',
             'servers' => [

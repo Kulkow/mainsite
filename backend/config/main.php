@@ -13,6 +13,10 @@ return [
     'language' => 'ru-RU',
     'bootstrap' => ['log','debug'],
     'modules' => ['debug' => 'yii\debug\Module',],
+    'aliases' => [
+        '@uploadroot' => $_SERVER['DOCUMENT_ROOT'].'/upload',
+        '@upload' => '/upload',
+    ],
     'components' => [
         'user' => [
             'identityClass' => 'common\models\User',

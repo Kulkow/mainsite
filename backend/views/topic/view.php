@@ -24,7 +24,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -42,9 +41,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'active',
         ],
     ]) ?>
-    <div class="tags">
-        Тэги: <?php $atags =  [];foreach($model->getTagTopics()->all() as $post) : ?>
-            <?php $atags[] = $post->getTag()->one()->tag ?>
+    <?= Html::img($model->getThumbUploadUrl('preview', 'small'), ['class' => 'img-thumbnail']) ?>
+    <div class="topic-tags">
+        Тэги: <?php $atags =  [];foreach($model->tags as $tag) : ?>
+            <?php $atags[] = $tag->tag ?>
         <?php endforeach; ?>
         <?php echo implode(', ',$atags) ?>
     </div>

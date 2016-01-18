@@ -6,6 +6,7 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 use common\behaviors\SeoBehavior;
+use common\behaviors\UploadImage;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use yii\helpers\Url;
@@ -72,6 +73,19 @@ class Topic extends \yii\db\ActiveRecord
             'SeoBehavior'  =>[
                 'class' => SeoBehavior::className(),
             ],
+            'UploadImage' => [
+                'class' => UploadImage::className(),
+                'attribute' => 'preview',
+                'scenarios' => ['insert', 'update'],
+                'path' => '@uploadroot/topic/{id}',
+                'url' => '@upload/topic/{id}',
+                'thumbPath' => '@uploadroot/topic/{id}/thumb',
+                'thumbUrl' => '@upload/topic/{id}/thumb',
+                'thumbs' => [
+                    'big' => ['width' => 400, 'quality' => 90],
+                    'small' => ['width' => 200, 'height' => 200],
+                ],
+            ],
         ];
     }
     
@@ -88,6 +102,7 @@ class Topic extends \yii\db\ActiveRecord
             [['title'], 'string', 'max' => 90],
             [['alias'], 'unique'],
             [['tags'], 'safe'],
+            [['preview'], 'file', 'extensions' => 'jpeg, jpg, bmp, png', 'on' => ['insert', 'update']],
         ];
     }
     
@@ -112,6 +127,7 @@ class Topic extends \yii\db\ActiveRecord
             'created' => Yii::t('app', 'Created'),
             'updated' => Yii::t('app', 'Updated'),
             'active' => Yii::t('app', 'Active'),
+            'preview' => Yii::t('app', 'Preview'),
         ];
     }
 
