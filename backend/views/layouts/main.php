@@ -33,6 +33,7 @@ AppAsset::register($this);
             ]);
             $menuItems = [
                 ['label' => 'Home', 'url' => ['/site/index']],
+                ['label' => 'Site', 'url' => ['/']],
             ];
             $menuItems[] = ['label' => 'Tags', 'url' => ['/tag']];
             $menuItems[] = ['label' => 'Topics', 'url' => ['/topic']];

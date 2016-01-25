@@ -51,6 +51,7 @@ return [
                 'topics/page/<page:[\d]+>'=>'topic/list',
                 'topics'=>'topic/list',
                 'topic/<alias>'=>'topic/index',
+                'blog'=>'blog/list',
                 '<controller>/<action>' => '<controller>/<action>',
             ]
         ],

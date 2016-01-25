@@ -24,6 +24,7 @@ use yii\helpers\Html;
  */
 class Image extends \yii\db\ActiveRecord
 {
+    public $model = null;
     /**
      * @inheritdoc
      */
@@ -71,13 +72,11 @@ class Image extends \yii\db\ActiveRecord
             //createValidator
         }
         if($this->validate()){
-           // $this->file->saveAs($dir . $model->file->baseName . '.' . $model->file->extension);
             $this->realname = $this->file->getBaseName();
             $this->alt = $this->realname;
             $this->ext = $this->file->getExtension();
             $this->type = ($type ? $type : '');
-            do
-            {
+            do{
                 $this->path = static::random('hexdec', 3).'/'.static::random('hexdec', 3);
             }
             while (file_exists($this->_server_path('original')));
@@ -95,61 +94,11 @@ class Image extends \yii\db\ActiveRecord
         }else{
             return $model->errors;
         }    
-        /*
-        $this->file = $file; //UploadedFile::getInstance($model, 'file');
-        if ($this->file && $this->file->validate()) {
-            print_r($model->file);
-            $this->path = '';
-            //$model->file->saveAs('uploads/' . $model->file->baseName . '.' . $model->file->extension);
-        }else{
-            $this->addError('password', 'Incorrect username or password.');
-        }
-        */
-        
-        /*$validation = Validation::factory($_FILES)->rules('image', array(
-            array('Upload::valid'),
-            array('Upload::not_empty'),
-            array('Upload::type', array(':value', array('jpg', 'jpeg', 'png', 'gif'))),
-            array('Upload::size', array(':value', '4M')),
-        ));*/
-        /*
-        if ( ! $validation->check())
-        {
-            throw new ORM_Validation_Exception($this->errors_filename(), $validation);
-        }
-*/
-        //$this->gallery_id = $gallery->id;
-        
-        /*$this->target_id = $target->id;
-        $this->type = ($type ? $type : $target->model());
-        do
-        {
-            $this->path = Text::random('hexdec', 3).'/'.Text::random('hexdec', 3);
-        }
-        while (file_exists($this->_server_path('original')));
-        $this->alt = urldecode($_FILES['image']['name']);
-        //$sql = "SELECT MAX(`order`) as last FROM ".$this->_table_name." WHERE gallery_id = ".$gallery->id;
-        //$last = DB::query(Database::SELECT, $sql)->execute()->as_array(NULL, 'last');
-        //$this->order = (int)array_pop($last) + 1;
-        $this->timestamp = time();
-        mkdir($this->_server_path(), 0775, TRUE);
-        if (! file_exists($this->_server_path())){
-            exit();
-        }
-        $this->create();
-        //$this->gallery->inc();
-        $image = Image::factory($_FILES['image']['tmp_name']);
-        $image->save($this->_server_path('original'));
-
-        return $this->resize($this->type);
-        */
     }
 
     public function resize($type = NULL)
     {
         $type = ! $type ? 'default' : $type;
-        //$config = Kohana::$config->load('image');
-        //$params = $config->get($type);
         $params = static::config($type);
         if(! empty($params)){
             foreach ($params as $index => $size)
@@ -162,22 +111,6 @@ class Image extends \yii\db\ActiveRecord
 
     protected function _resize($size, $width, $height, $quality)
     {
-        /*$image = BaseImage::factory($this->_server_path('original'));
-        $image = BaseImage::open($this->_server_path('original'));
-        if ( ! $height OR $image->width / $width < $image->height / $height)
-        {
-            $image->thumbnail($width, $height, Image::WIDTH);
-        }
-        else
-        {
-            $image->resize($width, $height, Image::HEIGHT);
-        }
-        if ($height)
-        {
-            $image->crop($width, $height);
-        }
-
-        $image->save($this->_server_path($size), $quality);*/
         $original = static::_server_path('original', FALSE);
         $resize = static::_server_path($size);
         BaseImage::thumbnail($original, $width, $height)->save($resize, ['quality' => $quality]);
@@ -216,13 +149,6 @@ class Image extends \yii\db\ActiveRecord
 
     public function unlink_images($type = NULL)
     {
-        /*$type = ! $type ? 'default' : $type;
-        $params = static::config($type);
-        foreach ($params['size'] as $index => $size)
-        {
-            @unlink($this->_server_path($size['name']));
-        }*/
-        // Или удалить папку что правильней
         FileHelper::removeDirectory($this->_server_path());
     }
 

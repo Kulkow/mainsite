@@ -4,22 +4,22 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "13952f5fea1aedea1385c698468a024a",
-    "content-hash": "f44506f01bcabccae276b0824ba9d65b",
+    "hash": "c37dbc82e64e9bc0f4868edd2f43e176",
+    "content-hash": "0b9e3e0c2d0cbaf83cefebad96d86860",
     "packages": [
         {
             "name": "asofter/yii2-imperavi-redactor",
-            "version": "0.0.2",
+            "version": "0.0.3",
             "target-dir": "yii/imperavi",
             "source": {
                 "type": "git",
                 "url": "https://github.com/asofter/yii2-imperavi-redactor.git",
-                "reference": "116092cc63dfbcc3bcd862938cd66b42afce93aa"
+                "reference": "08e05dd323f7b8f247a68324a5767eb14ffb7a1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asofter/yii2-imperavi-redactor/zipball/116092cc63dfbcc3bcd862938cd66b42afce93aa",
-                "reference": "116092cc63dfbcc3bcd862938cd66b42afce93aa",
+                "url": "https://api.github.com/repos/asofter/yii2-imperavi-redactor/zipball/08e05dd323f7b8f247a68324a5767eb14ffb7a1f",
+                "reference": "08e05dd323f7b8f247a68324a5767eb14ffb7a1f",
                 "shasum": ""
             },
             "require": {
@@ -56,7 +56,196 @@
                 "imperavi redactor",
                 "yii"
             ],
-            "time": "2015-10-02 07:13:58"
+            "time": "2016-01-12 16:21:51"
+        },
+        {
+            "name": "bower-asset/angular",
+            "version": "v1.4.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/angular/bower-angular.git",
+                "reference": "a69eba562dc18df13f27ca0274c90ee26c29004e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/angular/bower-angular/zipball/a69eba562dc18df13f27ca0274c90ee26c29004e",
+                "reference": "a69eba562dc18df13f27ca0274c90ee26c29004e",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "./angular.js",
+                "bower-asset-ignore": []
+            }
+        },
+        {
+            "name": "bower-asset/angular-bootstrap",
+            "version": "0.14.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/angular-ui/bootstrap-bower.git",
+                "reference": "b5e11f5861a1591a300e78a9902c1a7e7918d75b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/angular-ui/bootstrap-bower/zipball/b5e11f5861a1591a300e78a9902c1a7e7918d75b",
+                "reference": "b5e11f5861a1591a300e78a9902c1a7e7918d75b",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/angular": ">=1.3.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "./ui-bootstrap-tpls.js"
+                ],
+                "bower-asset-ignore": []
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Native AngularJS (Angular) directives for Bootstrap.",
+            "keywords": [
+                "angular",
+                "angular-ui",
+                "bootstrap"
+            ]
+        },
+        {
+            "name": "bower-asset/angular-resource",
+            "version": "v1.4.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/angular/bower-angular-resource.git",
+                "reference": "e9fca6dd5bcf3484fdbd7f9f85807a6c9a9a9661"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/angular/bower-angular-resource/zipball/e9fca6dd5bcf3484fdbd7f9f85807a6c9a9a9661",
+                "reference": "e9fca6dd5bcf3484fdbd7f9f85807a6c9a9a9661",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/angular": "1.4.9"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "./angular-resource.js",
+                "bower-asset-ignore": []
+            }
+        },
+        {
+            "name": "bower-asset/angular-route",
+            "version": "v1.4.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/angular/bower-angular-route.git",
+                "reference": "7636556e472878aea93bedfcdb6c1a809794ac00"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/angular/bower-angular-route/zipball/7636556e472878aea93bedfcdb6c1a809794ac00",
+                "reference": "7636556e472878aea93bedfcdb6c1a809794ac00",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/angular": "1.4.9"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "./angular-route.js",
+                "bower-asset-ignore": []
+            }
+        },
+        {
+            "name": "bower-asset/angular-strap",
+            "version": "v2.3.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mgcrea/angular-strap.git",
+                "reference": "9a29385e7e39941120b3fcb5dcefb85b0d7ef37b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mgcrea/angular-strap/zipball/9a29385e7e39941120b3fcb5dcefb85b0d7ef37b",
+                "reference": "9a29385e7e39941120b3fcb5dcefb85b0d7ef37b",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/angular": ">=1.2.21,<2.0.0"
+            },
+            "require-dev": {
+                "bower-asset/angular-animate": "~1.4",
+                "bower-asset/angular-i18n": "~1.4",
+                "bower-asset/angular-mocks": "~1.4",
+                "bower-asset/angular-motion": ">=0.3.3,<0.4.0",
+                "bower-asset/angular-route": "~1.4",
+                "bower-asset/angular-sanitize": "~1.4",
+                "bower-asset/angular-scenario": "~1.4",
+                "bower-asset/bootstrap": ">=3.2.0,<4.0.0",
+                "bower-asset/bootstrap-additions": ">=0.2.3,<0.3.0",
+                "bower-asset/fastclick": ">=1.0.3,<2.0.0",
+                "bower-asset/font-awesome": ">=4.1.0,<5.0.0",
+                "bower-asset/highlightjs": ">=8.0.0,<9.0.0",
+                "bower-asset/jquery": ">=2.1.1,<3.0.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "dist/angular-strap.js",
+                    "dist/angular-strap.tpl.js"
+                ],
+                "bower-asset-ignore": [
+                    "docs",
+                    "test",
+                    "tasks",
+                    "CONTRIBUTING.md"
+                ]
+            },
+            "description": "AngularStrap - AngularJS directives for Bootstrap",
+            "keywords": [
+                "angular",
+                "bootstrap"
+            ]
+        },
+        {
+            "name": "bower-asset/angular-validation",
+            "version": "v1.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/huei90/angular-validation.git",
+                "reference": "cd2989553e18f375b57e80383c50f1f6e61ca613"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/huei90/angular-validation/zipball/cd2989553e18f375b57e80383c50f1f6e61ca613",
+                "reference": "cd2989553e18f375b57e80383c50f1f6e61ca613",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "dist/angular-validation.js",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Client-side Validation for AngularJS",
+            "keywords": [
+                "angular",
+                "angular validation",
+                "angularjs",
+                "client-side",
+                "validation",
+                "validator"
+            ]
         },
         {
             "name": "bower-asset/bootstrap",
@@ -233,16 +422,16 @@
         },
         {
             "name": "bower-asset/yii2-pjax",
-            "version": "v2.0.4",
+            "version": "v2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/jquery-pjax.git",
-                "reference": "3f20897307cca046fca5323b318475ae9dac0ca0"
+                "reference": "6818718408086db6bdcf33649cecb86b6b4f9b67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/3f20897307cca046fca5323b318475ae9dac0ca0",
-                "reference": "3f20897307cca046fca5323b318475ae9dac0ca0",
+                "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/6818718408086db6bdcf33649cecb86b6b4f9b67",
+                "reference": "6818718408086db6bdcf33649cecb86b6b4f9b67",
                 "shasum": ""
             },
             "require": {
@@ -365,6 +554,57 @@
             "time": "2015-01-27 10:53:51"
         },
         {
+            "name": "deesoft/yii2-angular",
+            "version": "1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/deesoft/yii2-angular.git",
+                "reference": "97031eb540ac337054f8f8b2acd1f3f03057cadb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/deesoft/yii2-angular/zipball/97031eb540ac337054f8f8b2acd1f3f03057cadb",
+                "reference": "97031eb540ac337054f8f8b2acd1f3f03057cadb",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/angular": "~1.3",
+                "bower-asset/angular-bootstrap": "~0.13",
+                "bower-asset/angular-resource": "~1.3",
+                "bower-asset/angular-route": "~1.3",
+                "bower-asset/angular-validation": "~1.3",
+                "yiisoft/yii2": ">=2.0.4"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "bootstrap": "dee\\angular\\Bootstrap",
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "dee\\angular\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Misbahul Munir",
+                    "email": "misbahuldmunir@gmail.com"
+                }
+            ],
+            "description": "Yii2 angular extension",
+            "keywords": [
+                "angularjs",
+                "yii2"
+            ],
+            "time": "2015-09-03 14:43:37"
+        },
+        {
             "name": "ezyang/htmlpurifier",
             "version": "v4.6.0",
             "source": {
@@ -410,16 +650,16 @@
         },
         {
             "name": "fxp/composer-asset-plugin",
-            "version": "v1.0.3",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/francoispluchino/composer-asset-plugin.git",
-                "reference": "c2b0406ac19e9ea2d9556987e827d4e7f6924fde"
+                "reference": "daca454b94539a4e6d30937dfc6b817eceb03f28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/francoispluchino/composer-asset-plugin/zipball/c2b0406ac19e9ea2d9556987e827d4e7f6924fde",
-                "reference": "c2b0406ac19e9ea2d9556987e827d4e7f6924fde",
+                "url": "https://api.github.com/repos/francoispluchino/composer-asset-plugin/zipball/daca454b94539a4e6d30937dfc6b817eceb03f28",
+                "reference": "daca454b94539a4e6d30937dfc6b817eceb03f28",
                 "shasum": ""
             },
             "require": {
@@ -433,7 +673,7 @@
             "extra": {
                 "class": "Fxp\\Composer\\AssetPlugin\\FxpAssetPlugin",
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "1.1-dev"
                 }
             },
             "autoload": {
@@ -462,7 +702,7 @@
                 "npm",
                 "package"
             ],
-            "time": "2015-07-29 12:23:21"
+            "time": "2015-11-20 14:58:24"
         },
         {
             "name": "imagine/imagine",
@@ -518,16 +758,16 @@
         },
         {
             "name": "kartik-v/yii2-krajee-base",
-            "version": "v1.7.7",
+            "version": "1.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-krajee-base.git",
-                "reference": "c0adff9d9762f4fd3bf0e7cd0000fcab0bf00f19"
+                "reference": "0c274e31e4392cbafc5fe158eae81738794e02ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/c0adff9d9762f4fd3bf0e7cd0000fcab0bf00f19",
-                "reference": "c0adff9d9762f4fd3bf0e7cd0000fcab0bf00f19",
+                "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/0c274e31e4392cbafc5fe158eae81738794e02ce",
+                "reference": "0c274e31e4392cbafc5fe158eae81738794e02ce",
                 "shasum": ""
             },
             "require": {
@@ -560,7 +800,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-06-16 05:19:57"
+            "time": "2016-01-10 12:26:29"
         },
         {
             "name": "kartik-v/yii2-tree-manager",
@@ -568,12 +808,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-tree-manager.git",
-                "reference": "78e547ee8e0916a4d7c7675ffffe3787e2161d9d"
+                "reference": "d51cbc259ffcaea49bb93a0b035d118128a29cbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-tree-manager/zipball/0fd506de3ef0c73ec8a3f0c9267ed8353f5e9f89",
-                "reference": "78e547ee8e0916a4d7c7675ffffe3787e2161d9d",
+                "url": "https://api.github.com/repos/kartik-v/yii2-tree-manager/zipball/d51cbc259ffcaea49bb93a0b035d118128a29cbf",
+                "reference": "d51cbc259ffcaea49bb93a0b035d118128a29cbf",
                 "shasum": ""
             },
             "require": {
@@ -581,6 +821,11 @@
                 "kartik-v/yii2-widget-activeform": "~1.4"
             },
             "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "kartik\\tree\\": ""
@@ -611,20 +856,20 @@
                 "tree",
                 "treeview"
             ],
-            "time": "2015-08-30 13:36:20"
+            "time": "2016-01-19 16:22:16"
         },
         {
             "name": "kartik-v/yii2-widget-activeform",
-            "version": "v1.4.4",
+            "version": "v1.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-activeform.git",
-                "reference": "c62c8b92e8ee38892cc4e2b29851864a7a20ee01"
+                "reference": "6acc1539c37d731c79a67989409ad76e389fd5f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-activeform/zipball/c62c8b92e8ee38892cc4e2b29851864a7a20ee01",
-                "reference": "c62c8b92e8ee38892cc4e2b29851864a7a20ee01",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-activeform/zipball/6acc1539c37d731c79a67989409ad76e389fd5f0",
+                "reference": "6acc1539c37d731c79a67989409ad76e389fd5f0",
                 "shasum": ""
             },
             "require": {
@@ -658,7 +903,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-07-08 11:36:38"
+            "time": "2015-12-11 19:07:50"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -803,21 +1048,21 @@
         },
         {
             "name": "yiisoft/yii2-bootstrap",
-            "version": "2.0.4",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "1b6b1e61cf91c3cdd517d6a7e71d30bb212e4af0"
+                "reference": "1464f93834b1d5edb1f5625f7ffd6c3723fa4923"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/1b6b1e61cf91c3cdd517d6a7e71d30bb212e4af0",
-                "reference": "1b6b1e61cf91c3cdd517d6a7e71d30bb212e4af0",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/1464f93834b1d5edb1f5625f7ffd6c3723fa4923",
+                "reference": "1464f93834b1d5edb1f5625f7ffd6c3723fa4923",
                 "shasum": ""
             },
             "require": {
                 "bower-asset/bootstrap": "3.3.* | 3.2.* | 3.1.*",
-                "yiisoft/yii2": ">=2.0.4"
+                "yiisoft/yii2": ">=2.0.6"
             },
             "type": "yii2-extension",
             "extra": {
@@ -849,7 +1094,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2015-05-10 22:08:17"
+            "time": "2015-09-23 17:48:24"
         },
         {
             "name": "yiisoft/yii2-composer",
