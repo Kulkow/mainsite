@@ -1,6 +1,4 @@
 <?
-use yii\helpers\Html;
-use yii\grid\GridView;
 use kartik\tree\Module;
 
 use kartik\tree\TreeView;
@@ -12,7 +10,7 @@ echo TreeView::widget([
     // single query fetch to render the tree
     // use the Category model you have in the previous step
     'query' => Category::find()->addOrderBy('root, lft'), 
-    'headingOptions' => ['label' => 'Categories'],
+    'headingOptions' => ['label' => Yii::t('app', 'Categories')],
     'fontAwesome' => false,     // optional
     'isAdmin' => true,         // optional (toggle to enable admin mode)
     'displayValue' => 1,        // initial display value

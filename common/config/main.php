@@ -4,15 +4,19 @@ return [
     'aliases' => [
         '@uploadroot' => $_SERVER['DOCUMENT_ROOT'].'/upload',
         '@upload' => '/upload',
+        '@mainsite' => 'http'.($_SERVER['HTTPS'] ? 's' : '').'://'.$_SERVER['SERVER_NAME'],
     ],
     'components' => [
-        'authManager' => [
+        /*'authManager' => [
             'class' => 'yii\rbac\PhpManager',
             'defaultRoles' => ['user','moder','admin'], //здесь прописываем роли
-            //зададим куда будут сохраняться наши файлы конфигураций RBAC
             'itemFile' => '@common/components/rbac/items.php',
             'assignmentFile' => '@common/components/rbac/assignments.php',
             'ruleFile' => '@common/components/rbac/rules.php'
+        ],*/
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'defaultRoles' => ['user','moder','admin'],
         ],
         'cache' => [
             'class' => 'yii\caching\MemCache',

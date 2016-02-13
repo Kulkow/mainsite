@@ -40,6 +40,8 @@ class Topic extends \yii\db\ActiveRecord
      * @var array
      */
     protected $tags = [];
+
+    protected $category = NULL;
     
     /**
      * @inheritdoc
@@ -95,9 +97,9 @@ class Topic extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['h1', 'title'], 'required'],
+            [['h1'], 'required'],
             [['announce', 'content'], 'string'],
-            [['owner','editor', 'image', 'created', 'updated', 'active'], 'integer'],
+            [['owner','editor', 'image', 'created', 'updated', 'active', 'category_id'], 'integer'],
             [['h1', 'alias', 'keywords', 'description'], 'string', 'max' => 255],
             [['title'], 'string', 'max' => 90],
             [['alias'], 'unique'],
@@ -128,6 +130,7 @@ class Topic extends \yii\db\ActiveRecord
             'updated' => Yii::t('app', 'Updated'),
             'active' => Yii::t('app', 'Active'),
             'preview' => Yii::t('app', 'Preview'),
+            'category_id' => Yii::t('app', 'Category'),
         ];
     }
 
@@ -150,6 +153,7 @@ class Topic extends \yii\db\ActiveRecord
             'created' => 'created',
             'updated' => 'updated',
             'active' => 'active',
+            'category_id' => 'category_id',
         ];
     }
 
@@ -175,13 +179,21 @@ class Topic extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'editor']);
     }
-    
+
+    public function getCategory()
+    {
+        return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
+
+
     /**
-     * @param $action
+     * @param null $action
+     * @return string
      */
     public function url($action = null)
     {
-        return Url::toRoute('topic/'.$this->alias.($action ? '/'.$action : ''));
+        $action = 'topic'.($action ? '/'.$action : '');
+        return Url::to([$action, 'id' => $this->id, 'alias' => $this->alias]);
     }
      
     /**

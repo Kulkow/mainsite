@@ -41,7 +41,7 @@ class TopicSearch extends Topic
      */
     public function search($params)
     {
-        $query = Topic::find();
+        $query = Topic::find()->with('category');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

@@ -36,6 +36,7 @@ return [
             'class' => 'common\components\Request',
             'web'=> '/frontend/web'
         ],
+        /*
         'authManager' => [
             'class' => 'yii\rbac\PhpManager',
             'defaultRoles' => ['user','moder','admin'], //здесь прописываем роли
@@ -43,6 +44,10 @@ return [
             'itemFile' => '@common/components/rbac/items.php',
             'assignmentFile' => '@common/components/rbac/assignments.php',
             'ruleFile' => '@common/components/rbac/rules.php'
+        ],*/
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'defaultRoles' => ['user','moder','admin'],
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -52,6 +57,7 @@ return [
                 'topics'=>'topic/list',
                 'topic/<alias>'=>'topic/index',
                 'blog'=>'blog/list',
+                'category/<alias>'=>'category/index',
                 '<controller>/<action>' => '<controller>/<action>',
             ]
         ],

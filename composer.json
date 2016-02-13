@@ -26,7 +26,9 @@
         "deesoft/yii2-angular": "~1.0",
         "bower-asset/angular": "*",
         "bower-asset/angular-route": "*",
-        "bower-asset/angular-strap": "*"
+        "bower-asset/angular-strap": "*",
+        "dmstr/yii2-adminlte-asset": "2.*",
+        "developeruz/yii2-db-rbac": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

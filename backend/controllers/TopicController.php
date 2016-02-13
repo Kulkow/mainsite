@@ -64,7 +64,7 @@ class TopicController extends Controller
     {
         $model = new Topic();
         $model->loadDefaultValues();
-        $model->setScenario('create');
+        $model->setScenario('update');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -85,7 +85,8 @@ class TopicController extends Controller
     {
         $model = $this->findModel($id);
         $model->setScenario('update');
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $post = Yii::$app->request->post();
+        if ($model->load($post) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

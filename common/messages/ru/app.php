@@ -7,5 +7,23 @@ return [
         'Announce'  =>  'Аннонс',
         'Content'  =>  'Содержание',
         'Active'  =>  'Активен',
+
+        /**
+        * models
+         */
+        'Topics'  =>  'Топики',
+        'Tags'  =>  'Теги',
+        'Categories'  =>  'Категории',
+
+        'Topic'  =>  'Топик',
+        'Update {modelClass}' => 'Редактирование',
+
+        'Create' => 'Добавить',
+        'Update' => 'Обновить',
+        'Delete' => 'Удалить',
+
+        'Picture' => 'Картинка',
+        'About' => 'Общее',
+        'Actions' => 'Действия',
         ];
 ?>

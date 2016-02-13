@@ -12,7 +12,15 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'language' => 'ru-RU',
     'bootstrap' => ['log','debug'],
-    'modules' => ['debug' => 'yii\debug\Module',],
+    'modules' => [
+        'debug' => 'yii\debug\Module',
+        'permit' => [
+            'class' => 'developeruz\db_rbac\Yii2DbRbac',
+            'params' => [
+                'userClass' => 'app\models\User'
+            ]
+        ],
+    ],
     'aliases' => [
         '@uploadroot' => $_SERVER['DOCUMENT_ROOT'].'/upload',
         '@upload' => '/upload',
@@ -47,11 +55,19 @@ return [
                     //'sourceLanguage' => 'en-US',
                     'fileMap' => [
                         'app'       => 'app.php',
+                        'app/topic' => 'topic.php',
                         'app/error' => 'error.php',
                     ],
                 ],
             ],
         ],
+        /*'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app'
+                ],
+            ],
+        ],*/
     ],
     'params' => $params,
 ];

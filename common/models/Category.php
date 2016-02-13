@@ -9,8 +9,9 @@ use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 use yii\db\ActiveRecord;
+use yii\helpers\Url;
 use common\behaviors\SeoBehavior;
-use yii\helpers\ArrayHelper;
+use common\helpers\ArrayHelper;
  
 class Category extends \kartik\tree\models\Tree
 {
@@ -89,6 +90,49 @@ class Category extends \kartik\tree\models\Tree
                                    'keywords' => Yii::t('app', 'Keywords'),
                                    'description' => Yii::t('app', 'Keywords'),
                                    ];
+    }
+
+    /**
+     * @param array $tree
+     * @param array $options
+     * @return array
+     */
+    public static function menu(array $tree = [], array $options = []){
+        $array = [];
+        $attributes = ! empty($options['attributes']) ? $options['attributes'] : ['icon' => 'fa fa-circle-o',];
+        $lkey = ! empty($options['lkey']) ? $options['lkey'] : 'lft';
+        $levelkey = ! empty($options['level']) ? $options['level'] : 'lvl';
+        $label = ! empty($options['label']) ? $options['label'] : 'title';
+        $level = 0;
+        $i = 0;
+        $_path = $i;
+        $delimiter = '.';
+        foreach($tree as $child){
+            $menu = ['label' => $child->$label, 'url' => [$child->url()], 'level' => $child->$levelkey];
+            if($child->$levelkey > $level){
+                $i = 0;
+                $_path = $_path.$delimiter.'items';
+            }
+            if($child->$levelkey > 0){
+                $path = $_path.$delimiter.$i;
+            }else{
+                $path = $i;
+            }
+            ArrayHelper::setValue($array,$path,$menu, $delimiter);
+            $level = $child->$levelkey;
+            $i++;
+        }
+        return $array;
+    }
+
+    /**
+     * @param null $action
+     * @return string
+     */
+    public function url($action = null)
+    {
+        $action = 'category'.($action ? '/'.$action : '/');
+        return Url::to([$action, 'id' => $this->id, 'alias' => $this->alias]);
     }
 }
 

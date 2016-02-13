@@ -7,14 +7,14 @@ use yii\widgets\ActiveForm;
 /* @var $model common\models\Tag */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
-<div class="tag-form">
-    <?php $form = ActiveForm::begin(); ?>
-    <?= $form->field($model, 'tag')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'alias')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'active')->checkbox() ?>
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+<?php $form = ActiveForm::begin(); ?>
+    <div class="box-body">
+        <?= $form->field($model, 'tag')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'alias')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'active')->checkbox() ?>
+        <div class="box-footer">
+            <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        </div>
     </div>
-    <?php ActiveForm::end(); ?>
-</div>
+<?php ActiveForm::end(); ?>
+

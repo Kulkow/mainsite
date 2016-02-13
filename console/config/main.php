@@ -17,6 +17,10 @@ return [
             'enableAutoLogin' => true,
             'class' => 'yii\web\User',
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'defaultRoles' => ['user','moder','admin'],
+        ],
         'log' => [
             'targets' => [
                 [

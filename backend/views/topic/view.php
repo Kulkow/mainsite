@@ -39,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'created',
             'updated',
             'active',
+            'category_id',
         ],
     ]) ?>
     <?= Html::img($model->getThumbUploadUrl('preview', 'small'), ['class' => 'img-thumbnail']) ?>

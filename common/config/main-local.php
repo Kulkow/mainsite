@@ -11,12 +11,17 @@ return [
             // for the mailer to send real emails.
             'useFileTransport' => true,
         ],
+        /*
         'authManager' => [
             'class' => 'yii\rbac\PhpManager',
             'defaultRoles' => ['user','moder','admin'], //здесь прописываем роли
             'itemFile' => '@common/components/rbac/items.php',
             'assignmentFile' => '@common/components/rbac/assignments.php',
             'ruleFile' => '@common/components/rbac/rules.php'
+        ],*/
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'defaultRoles' => ['user','moder','admin'],
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,

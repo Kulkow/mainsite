@@ -216,6 +216,7 @@ class UploadImage extends UploadBehavior
         $quality = ArrayHelper::getValue($config, 'quality', 100);
         $mode = ArrayHelper::getValue($config, 'mode', ManipulatorInterface::THUMBNAIL_INSET);
         if (!$width || !$height) {
+            Image::$driver = Image::DRIVER_GD2;
             $image = Image::getImagine()->open($path);
             $ratio = $image->getSize()->getWidth() / $image->getSize()->getHeight();
             if ($width) {
