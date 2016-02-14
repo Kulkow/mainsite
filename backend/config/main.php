@@ -35,6 +35,10 @@ return [
             'web'=> '/backend/web',
             'adminUrl' => '/admin'
         ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => false,
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -60,6 +64,18 @@ return [
                     ],
                 ],
             ],
+        ],
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+                'topics/page/<page:[\d]+>'=>'topic/list',
+                'topics'=>'topic/list',
+                'topic/<alias>'=>'topic/index',
+                'blog'=>'blog/list',
+                'category/<alias>'=>'category/index',
+                '<controller>/<action>' => '<controller>/<action>',
+            ]
         ],
         /*'view' => [
             'theme' => [

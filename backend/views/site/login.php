@@ -1,12 +1,13 @@
 <?php
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \common\models\LoginForm */
 
-$this->title = 'Sign In';
+$this->title = Yii::t('app','Sign In');
 
 $fieldOptions1 = [
     'options' => ['class' => 'form-group has-feedback'],
@@ -45,14 +46,12 @@ $fieldOptions2 = [
             </div>
             <!-- /.col -->
             <div class="col-xs-4">
-                <?= Html::submitButton('Sign in', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
+                <?= Html::submitButton('Login', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
             </div>
             <!-- /.col -->
         </div>
-
-
         <?php ActiveForm::end(); ?>
-
+        <? if(false): ?>
         <div class="social-auth-links text-center">
             <p>- OR -</p>
             <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in
@@ -61,8 +60,9 @@ $fieldOptions2 = [
                 in using Google+</a>
         </div>
         <!-- /.social-auth-links -->
+        <? endif ?>
 
-        <a href="#">I forgot my password</a><br>
+        <a href="<? echo Url::to(['/site/forgot']) ?>"><? echo Yii::t('app', 'Forgot') ?></a><br>
         <a href="register.html" class="text-center">Register a new membership</a>
 
     </div>

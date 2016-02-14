@@ -8,6 +8,14 @@ return [
         'Content'  =>  'Содержание',
         'Active'  =>  'Активен',
 
+        /*user*/
+        'Sign In' => 'Авторизация',
+        'Login' => 'Войти',
+        'Logout' => 'Выйти',
+        'Forgot' => 'Напоминание пароля',
+        'Forgot title' => 'Забыли пароль?',
+        'Registration' => 'Регистрация',
+
         /**
         * models
          */

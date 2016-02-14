@@ -44,7 +44,7 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, Yii::t('app', 'Incorrect username or password.'));
             }
         }
     }
@@ -57,7 +57,7 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? (3600 * 24 * 30) : 0);
         } else {
             return false;
         }
@@ -78,9 +78,10 @@ class LoginForm extends Model
                 ->one();
             //Проверяем права доступа, если нет, то делаем вид,
             //что пользователь не найден.
-            if (!Yii::$app->user->can('dashboard', ['user' => $this->_user])) {
+            /*if (!Yii::$app->user->can('dashboard', ['user' => $this->_user])) {
+                $this->addError('username', Yii::t('app', 'no allow dashbord.'));
                 $this->_user = null;
-            }
+            }*/
         }
         return $this->_user;
     }

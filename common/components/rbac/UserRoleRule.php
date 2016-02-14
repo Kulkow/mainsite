@@ -14,7 +14,8 @@ class UserRoleRule extends Rule
         $cacheUser = 'User_role:'.Yii::$app->user->id;
         if (false === $_user = Yii::$app->cache->get($cacheUser)) {
             if (null === $_user = User::findOne($user)) {
-                throw new NotFoundHttpException;
+                return FALSE;
+                //throw new NotFoundHttpException;
             }
             Yii::$app->cache->set(
                 $cacheUser,
