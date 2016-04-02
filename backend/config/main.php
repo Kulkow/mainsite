@@ -68,14 +68,13 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
+            /*'rules' => [
                 'topics/page/<page:[\d]+>'=>'topic/list',
                 'topics'=>'topic/list',
-                'topic/<alias>'=>'topic/index',
-                'blog'=>'blog/list',
+                'topic/<action>/<alias>'=>'admin/topic/<action>',
                 'category/<alias>'=>'category/index',
                 '<controller>/<action>' => '<controller>/<action>',
-            ]
+            ]*/
         ],
         /*'view' => [
             'theme' => [

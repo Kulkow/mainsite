@@ -14,10 +14,11 @@ use yii\filters\VerbFilter;
 /**
  * TopicController implements the CRUD actions for Topic model.
  */
-class TopicController extends Controller
+class TopicController extends AdminController
 {
     public function behaviors()
     {
+        //return parent::behaviors();
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),

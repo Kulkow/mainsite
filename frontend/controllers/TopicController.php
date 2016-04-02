@@ -1,21 +1,17 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Category;
 use Yii;
 use common\models\Topic;
-use yii\caching\TagDependency;
 use yii\data\Pagination;
-use yii\base\InvalidParamException;
-use yii\web\BadRequestHttpException;
-use yii\web\NotFoundHttpException;
-use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
 /**
  * Topic controller
  */
-class TopicController extends Controller
+class TopicController extends LayoutController
 {
     /**
      * @inheritdoc
@@ -64,66 +60,68 @@ class TopicController extends Controller
     /**
      * @param $alias
     */
-    public function actionIndex($alias = null)
+    public function actionView($alias = null)
     {
-        if(Yii::$app->request->get('cache')){
-            $cacheKey = 'Topic:' . $alias;
-            Yii::$app->cache->delete($cacheKey);
-        }
-        $cacheKey = 'Topic:' . $alias;
-        if (false === $topic = Yii::$app->cache->get($cacheKey)) {
+        $cacheKey = 'Topic:'.$alias;
+        if (false === $topic = $this->getCache($cacheKey)) {
             if (null === $topic = Topic::find()->where(['alias' => $alias])->with('tags')->one()) {
-                throw new NotFoundHttpException;
+                $this->error(404);
             }
-            Yii::$app->cache->set(
-                $cacheKey,
-                $topic,
-                86400,
-                new TagDependency(
-                    [
-                        'tags' => [
-                            
-                        ]
-                    ]
-                )
-            );
+            $this->setCache($cacheKey, $topic, 'Topic_View', ['topic-'.$topic->primaryKey()]);
         }
-        return $this->render('index',[
-                                    'topic'  => $topic,
-                                    'tags' => $topic->tags
-                                    ]);
+        return $this->render('view',[
+                'topic'  => $topic,
+                'tags' => $topic->tags,
+                'category' => $topic->category
+            ]
+        );
+    }
+
+    /**
+     * @param $alias
+     */
+    public function actionCategory($alias = null)
+    {
+        $cacheKey = 'Category:'.$alias;
+        if (false === $category = $this->getCache($cacheKey)) {
+            if (null === $category = Category::find()->where(['alias' => $alias])->one()) {
+                $this->error(404);
+            }
+            $this->setCache($cacheKey, $category, 'Category_View', ['category-'.$category->primaryKey()]);
+        }
+        $list = Topic::find()->where(['active' => 1, 'category_id' => $category->id])->with('tags');
+        $countQuery = clone $list;
+        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize' => $this->paginate['per_page']]);
+        $cacheKey = 'Topics_'.$this->cacheKeyPaginate($pages);
+        if (false === $topics = $this->getCache($cacheKey)) {
+            if (null === $topics = $list->offset($pages->offset)->limit($pages->limit)->all()) {
+                $this->error(404);
+            }
+            $this->setCache($cacheKey, $topics, 'Topic_List', []);
+        }
+        return $this->render('category',[
+            'topics' => $topics,
+            'category' => $category,
+            'pages'     => $pages,
+        ]);
     }
     
     public function actionList()
     {
-        $query = Topic::find()->where(['active' => 1])->with('tags');
-        $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize' => 3]);
-        $cacheTopics = 'Topics'.$pages->getPage();
-        if(Yii::$app->request->get('cache')){
-            Yii::$app->cache->delete($cacheTopics);
-        }
-        if (false === $topics = Yii::$app->cache->get($cacheTopics)) {
-            if (null === $topics = $query->offset($pages->offset)->limit($pages->limit)->all()) {
-                throw new NotFoundHttpException;
+        $list = Topic::find()->where(['active' => 1])->with('tags');
+        $countQuery = clone $list;
+        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize' => $this->paginate['per_page']]);
+        $cacheKey = 'Topics_'.$this->cacheKeyPaginate($pages);
+        if (false === $topics = $this->getCache($cacheKey)) {
+            if (null === $topics = $list->offset($pages->offset)->limit($pages->limit)->all()) {
+                $this->error(404);
             }
-            Yii::$app->cache->set(
-                $cacheTopics,
-                $topics,
-                86400,
-                new TagDependency(
-                    [
-                        'tags' => [
-                            
-                        ]
-                    ]
-                )
-            );
+            $this->setCache($cacheKey, $topics, 'Topic_List', []);
         }
         return $this->render('list',[
-                                    'topics'    => $topics,
-                                    'pages'     => $pages,
-                                    ]);
+            'topics'    => $topics,
+            'pages'     => $pages,
+        ]);
     }
 
     

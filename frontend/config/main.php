@@ -36,6 +36,10 @@ return [
             'class' => 'common\components\Request',
             'web'=> '/frontend/web'
         ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => false,
+        ],
         /*
         'authManager' => [
             'class' => 'yii\rbac\PhpManager',
@@ -52,10 +56,13 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'suffix' => '/',
             'rules' => [
+                'topics/category/<alias>/page/<page:[\d]+>'=>'topic/category',
+                'topics/category/<alias>'=>'topic/category',
                 'topics/page/<page:[\d]+>'=>'topic/list',
                 'topics'=>'topic/list',
-                'topic/<alias>'=>'topic/index',
+                'topic/<alias>'=>'topic/view',
                 'blog'=>'blog/list',
                 'category/<alias>'=>'category/index',
                 '<controller>/<action>' => '<controller>/<action>',

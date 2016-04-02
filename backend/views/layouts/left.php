@@ -16,7 +16,6 @@ $tree = Category::menu($tree);
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
-
         <!-- search form -->
         <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
@@ -30,6 +29,7 @@ $tree = Category::menu($tree);
         <!-- /.search form -->
         <? $items = [
             ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
+            ['label' => Yii::t('app','Projets'), 'url' => ['/projects']],
             ['label' => Yii::t('app','Topics'), 'url' => ['/topic']],
             ['label' =>  Yii::t('app','Tags'), 'url' => ['/tag']],
             ['label' =>  Yii::t('app','Category'), 'url' => ['/category'], 'items' => $tree],

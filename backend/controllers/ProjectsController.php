@@ -3,29 +3,39 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Tag;
-use common\models\TagSearch;
+use common\models\Project;
+use common\models\ProjectSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TagController implements the CRUD actions for Tag model.
+ * ProjectController implements the CRUD actions for Project model.
  */
-class TagController extends AdminController
+class ProjectController extends Controller
 {
+    const STATUS_ACTIVE = 1;
+    const STATUS_HIDE = 0;
+
     public function behaviors()
     {
-        return parent::behaviors();
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
+                ],
+            ],
+        ];
     }
 
     /**
-     * Lists all Tag models.
+     * Lists all Project models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TagSearch();
+        $searchModel = new ProjectSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -35,7 +45,7 @@ class TagController extends AdminController
     }
 
     /**
-     * Displays a single Tag model.
+     * Displays a single Project model.
      * @param integer $id
      * @return mixed
      */
@@ -47,14 +57,14 @@ class TagController extends AdminController
     }
 
     /**
-     * Creates a new Tag model.
+     * Creates a new Project model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Tag();
-        $model->loadDefaultValues();
+        $model = new Project();
+        $model->setScenario('update');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -65,7 +75,7 @@ class TagController extends AdminController
     }
 
     /**
-     * Updates an existing Tag model.
+     * Updates an existing Project model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -73,6 +83,7 @@ class TagController extends AdminController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->setScenario('update');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -84,7 +95,7 @@ class TagController extends AdminController
     }
 
     /**
-     * Deletes an existing Tag model.
+     * Deletes an existing Project model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -97,15 +108,15 @@ class TagController extends AdminController
     }
 
     /**
-     * Finds the Tag model based on its primary key value.
+     * Finds the Project model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Tag the loaded model
+     * @return Project the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Tag::findOne($id)) !== null) {
+        if (($model = Project::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

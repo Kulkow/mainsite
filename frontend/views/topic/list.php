@@ -33,7 +33,5 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php endforeach ?>
 </div>
 <?php
-echo LinkPager::widget([
-    'pagination' => $pages,
-]);
+echo LinkPager::widget(['pagination' => $pages]);
 ?>

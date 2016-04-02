@@ -66,7 +66,7 @@ class Category extends \kartik\tree\models\Tree
         ];
         return $behaviors;
     }
-    
+
     public function rules()
     {
         $rule = parent::rules();
@@ -129,7 +129,7 @@ class Category extends \kartik\tree\models\Tree
      * @param null $action
      * @return string
      */
-    public function url($action = null)
+    public function url($action = 'view')
     {
         $action = 'category'.($action ? '/'.$action : '/');
         return Url::to([$action, 'id' => $this->id, 'alias' => $this->alias]);

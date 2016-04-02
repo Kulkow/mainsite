@@ -18,14 +18,7 @@ class CategoryController extends \kartik\tree\controllers\NodeController
 {
     public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
+        return AdminController::behaviors();
     }
 
     /**

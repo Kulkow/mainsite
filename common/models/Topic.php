@@ -162,9 +162,7 @@ class Topic extends \yii\db\ActiveRecord
      */
     public function getTagTopics()
     {
-        //return $this->hasMany(TagTopic::className(), ['topic_id' => 'id']);
-        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
-            ->viaTable('tag_topic', ['topic_id' => 'id']);
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])->viaTable('tag_topic', ['topic_id' => 'id']);
     }
 
     /**
@@ -187,13 +185,13 @@ class Topic extends \yii\db\ActiveRecord
 
 
     /**
-     * @param null $action
+     * @param string $action
      * @return string
      */
-    public function url($action = null)
+    public function url($action = 'view')
     {
-        $action = 'topic'.($action ? '/'.$action : '');
-        return Url::to([$action, 'id' => $this->id, 'alias' => $this->alias]);
+        $url = '/topic'.($action ? '/'.$action : '');
+        return Url::to([$url, 'alias' => $this->alias]);
     }
      
     /**

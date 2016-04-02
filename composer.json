@@ -19,7 +19,7 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "kartik-v/yii2-tree-manager": "@dev",
-        "fxp/composer-asset-plugin": "~1.1",
+        "fxp/composer-asset-plugin": "^1.1.0",
         "asofter/yii2-imperavi-redactor": "*",
         "yiisoft/yii2-sphinx": "^2.0",
         "yiisoft/yii2-imagine": "^2.0",

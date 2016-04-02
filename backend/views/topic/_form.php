@@ -34,12 +34,10 @@ use common\models\Category;
                 <?= $form->field($model, 'h1')->textInput(['maxlength' => true]) ?>
                 <?= $form->field($model, 'alias')->textInput(['maxlength' => true]) ?>
                 <?= $form->field($model, 'announce')->textarea(['rows' => 6]) ?>
-                <?
-                echo yii\imperavi\Widget::widget([
+                <?= yii\imperavi\Widget::widget([
                 'model' => $model,
                 'attribute' => 'content',
-                ]);
-                ?>
+                ]);?>
                 <?= TreeViewInput::widget([
                     'query' => Category::find()->addOrderBy('root, lft'),
                     'model' => $model,
@@ -74,5 +72,6 @@ use common\models\Category;
     <div class="box-footer">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success pull-right' : 'btn btn-primary pull-right']) ?>
     </div>
+</div>
 <?php ActiveForm::end(); ?>
 
