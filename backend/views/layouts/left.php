@@ -29,7 +29,8 @@ $tree = Category::menu($tree);
         <!-- /.search form -->
         <? $items = [
             ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
-            ['label' => Yii::t('app','Projets'), 'url' => ['/projects']],
+            ['label' => Yii::t('app','Users'), 'url' => ['/user']],
+            ['label' => Yii::t('app','Projets'), 'url' => ['/project']],
             ['label' => Yii::t('app','Topics'), 'url' => ['/topic']],
             ['label' =>  Yii::t('app','Tags'), 'url' => ['/tag']],
             ['label' =>  Yii::t('app','Category'), 'url' => ['/category'], 'items' => $tree],

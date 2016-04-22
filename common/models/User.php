@@ -6,6 +6,8 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use common\behaviors\UploadImage;
+use yii\helpers\Url;
 
 /**
  * User model
@@ -44,7 +46,26 @@ class User extends ActiveRecord implements IdentityInterface
     public function behaviors()
     {
         return [
-            TimestampBehavior::className(),
+            'timestampBehavior' => [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'updated_at',
+                ]
+            ],
+            'UploadImage' => [
+                'class' => UploadImage::className(),
+                'attribute' => 'preview',
+                'scenarios' => ['insert', 'update'],
+                'path' => '@uploadroot/user/{id}',
+                'url' => '@upload/user/{id}',
+                'thumbPath' => '@uploadroot/user/{id}/thumb',
+                'thumbUrl' => '@upload/user/{id}/thumb',
+                'thumbs' => [
+                    'big' => ['width' => 400, 'quality' => 90],
+                    'small' => ['width' => 200, 'height' => 200],
+                ],
+            ],
         ];
     }
 
@@ -58,6 +79,7 @@ class User extends ActiveRecord implements IdentityInterface
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
             ['role', 'default', 'value' => self::ROLE_USER],
+            [['preview'], 'file', 'extensions' => 'jpeg, jpg, bmp, png', 'on' => ['insert', 'update']],
         ];
     }
 
@@ -202,5 +224,15 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    /**
+     * @param string $action
+     * @return string
+     */
+    public function url($action = 'view')
+    {
+        $url = '/user'.($action ? '/'.$action : '');
+        return Url::to([$url, 'id' => $this->id]);
     }
 }

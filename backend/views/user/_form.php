@@ -7,15 +7,41 @@ use yii\widgets\ActiveForm;
 /* @var $model common\models\User */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
-<?php $form = ActiveForm::begin(); ?>
+<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 <div class="box-body">
     <div class="nav-tabs-custom">
-        <?= $form->field($model, 'username')->textInput() ?>
-        <?= $form->field($model, 'email')->textInput() ?>
-        <?= $form->field($model, 'role')->textInput() ?>
-        <?= $form->field($model, 'status')->textInput() ?>
-
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#tab_about" data-toggle="tab"><? echo Yii::t("app","About")?></a>
+            </li>
+            <li><a href="#tab_picture" data-toggle="tab"><? echo Yii::t("app","Picture")?></a></li>
+            <?php if(! $model->isNewRecord): ?>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <? echo Yii::t("app","Actions")?><span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="<?php echo $model->url('delete') ?>"><? echo Yii::t("app","Delete")?></a>
+                        </li>
+                    </ul>
+                </li>
+            <? endif?>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab_about">
+                <?= $form->field($model, 'username')->textInput() ?>
+                <?= $form->field($model, 'email')->textInput() ?>
+                <? //= $form->field($model, 'role')->dropDownList($roles) ?>
+                <? //= $form->field($model, 'status')->dropDownList($statuses) ?>
+            </div>
+            <div class="tab-pane" id="tab_picture">
+                <? if($model->preview): ?>
+                    <?= Html::img($model->getThumbUploadUrl('preview', 'small'), ['class' => 'img-thumbnail']) ?>
+                <?php endif ?>
+                <?= $form->field($model, 'preview')->fileInput(['accept' => 'image/*']) ?>
+            </div>
+        </div>
         <div class="box-footer">
             <?= Html::submitButton($model->isNewRecord ? Yii::t('app/user', 'Create') : Yii::t('app/user', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         </div>

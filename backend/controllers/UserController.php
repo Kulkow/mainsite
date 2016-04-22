@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\User;
 use common\models\UserSearch;
+use backend\models\CreateUserForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -60,13 +61,18 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
-        $model = new User();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $model = new CreateUserForm();
+        //$roles = ArrayHelper::map(Yii::$app->authManager->getRoles(), 'name', 'description');
+        $roles = Yii::$app->authManager->getRoles();
+        $statuses = [User::STATUS_DELETED => 'Status Deleted', User::STATUS_ACTIVE => 'Status Active'];
+        if ($model->load(Yii::$app->request->post())){
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'roles' => $roles,
+                'statuses' => $statuses
             ]);
         }
     }
@@ -80,7 +86,7 @@ class UserController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $model->setScenario('update');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
