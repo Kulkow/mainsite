@@ -38,7 +38,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'=>'text',
                 'content' => function($model){
                     $category = $model->category;
-                    return $category->title;
+                    if($category){
+                        return $category->title;
+                    }
+                    return '';
                 },
                 ],
                 ['class' => 'common\grid\ActionColumn'],
