@@ -67,7 +67,7 @@ class TopicController extends LayoutController
             if (null === $topic = Topic::find()->where(['alias' => $alias])->with('tags')->one()) {
                 $this->error(404);
             }
-            $this->setCache($cacheKey, $topic, 'Topic_View', ['topic-'.$topic->primaryKey()]);
+            $this->setCache($cacheKey, $topic, 'Topic_View', ['topic-'.$topic->id]);
         }
         return $this->render('view',[
                 'topic'  => $topic,
@@ -87,7 +87,7 @@ class TopicController extends LayoutController
             if (null === $category = Category::find()->where(['alias' => $alias])->one()) {
                 $this->error(404);
             }
-            $this->setCache($cacheKey, $category, 'Category_View', ['category-'.$category->primaryKey()]);
+            $this->setCache($cacheKey, $category, 'Category_View', ['category-'.$category->id]);
         }
         $list = Topic::find()->where(['active' => 1, 'category_id' => $category->id])->with('tags');
         $countQuery = clone $list;
