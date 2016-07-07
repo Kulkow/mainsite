@@ -13,11 +13,11 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php if ($this->beginCache($topic->id, ['enabled' => ! Yii::$app->request->get('cache_clear')])) : ?>
     <div class="topic" xmlns="http://www.w3.org/1999/html">
         <h1><?php echo $topic->h1 ?></h1>
-        <? if(! empty($topic->preview)): ?>
+        <?php if(! empty($topic->preview)): ?>
             <div class="topic_preview">
-                <?= Html::img($topic->getThumbUploadUrl('preview', 'big'), ['class' => 'img-thumbnail']) ?>
+                <?php echo Html::img($topic->getThumbUploadUrl('preview', 'big'), ['class' => 'img-thumbnail']) ?>
             </div>
-        <? endif ?>
+        <?php endif ?>
         <div class="topic-contenct">
             <?php echo $topic->content ?>
         </div>
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php endforeach ?>
             </ul>
         </div>
-        <? endif ?>
+        <?php endif ?>
     </div>
     <?php $this->endCache(); ?>
 <?php endif ?>

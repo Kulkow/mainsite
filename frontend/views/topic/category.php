@@ -11,13 +11,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php foreach ($topics as $topic) : ?>
             <div class="topic_item">
                 <a href="<?php echo $topic->url() ?>" title="<?php echo $topic->title ?>"><?php echo $topic->title ?></a>
-                <? if(! empty($topic->preview)): ?>
+                <?php if(! empty($topic->preview)): ?>
                     <div class="topic_preview">
                         <a href="<?php echo $topic->url() ?>" title="<?php echo $topic->title ?>">
-                            <?= Html::img($topic->getThumbUploadUrl('preview', 'small'), ['class' => 'img-thumbnail']) ?>
+                            <?php echo Html::img($topic->getThumbUploadUrl('preview', 'small'), ['class' => 'img-thumbnail']) ?>
                         </a>
                     </div>
-                <? endif ?>
+                <?php endif ?>
                 <div class="topic_announce">
                     <?php echo $topic->announce ?>
                 </div>
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?php endforeach ?>
                         </ul>
                     </div>
-                <? endif ?>
+                <?php endif ?>
             </div>
         <?php endforeach ?>
     </div>
