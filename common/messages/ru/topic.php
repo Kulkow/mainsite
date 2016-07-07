@@ -1,4 +1,4 @@
-<?
+<?php
 return [
         'Topics' => 'Топики',
         'Announce'  =>  'Аннонс',

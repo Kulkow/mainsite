@@ -31,3 +31,4 @@ phpunit.phar
 
 /tmp
 /upload
+auth.json

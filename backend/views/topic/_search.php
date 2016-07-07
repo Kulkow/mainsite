@@ -15,15 +15,15 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?php echo $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'h1') ?>
+    <?php echo $form->field($model, 'h1') ?>
 
-    <?= $form->field($model, 'alias') ?>
+    <?php echo $form->field($model, 'alias') ?>
 
-    <?= $form->field($model, 'title') ?>
+    <?php echo $form->field($model, 'title') ?>
 
-    <?= $form->field($model, 'keywords') ?>
+    <?php echo $form->field($model, 'keywords') ?>
 
     <?php // echo $form->field($model, 'description') ?>
 
@@ -40,8 +40,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'active') ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
+        <?php echo Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
+        <?php echo Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -51,7 +51,7 @@ $fieldOptions2 = [
             <!-- /.col -->
         </div>
         <?php ActiveForm::end(); ?>
-        <? if(false): ?>
+        <?php if(false): ?>
         <div class="social-auth-links text-center">
             <p>- OR -</p>
             <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in
@@ -62,7 +62,7 @@ $fieldOptions2 = [
         <!-- /.social-auth-links -->
         <? endif ?>
 
-        <a href="<? echo Url::to(['/site/forgot']) ?>"><? echo Yii::t('app', 'Forgot') ?></a><br>
+        <a href="<?php echo Url::to(['/site/forgot']) ?>"><? echo Yii::t('app', 'Forgot') ?></a><br>
         <a href="register.html" class="text-center">Register a new membership</a>
 
     </div>

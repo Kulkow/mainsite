@@ -1,4 +1,4 @@
-<?
+<?php
 use kartik\form\ActiveForm;
 use kartik\tree\Module;
 use kartik\tree\TreeView;

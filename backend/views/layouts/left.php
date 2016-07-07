@@ -27,13 +27,13 @@ $tree = Category::menu($tree);
             </div>
         </form>
         <!-- /.search form -->
-        <? $items = [
+        <?php $items = [
             ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
             ['label' => Yii::t('app','Users'), 'url' => ['/user']],
             ['label' => Yii::t('app','Projets'), 'url' => ['/project']],
             ['label' => Yii::t('app','Topics'), 'url' => ['/topic']],
             ['label' =>  Yii::t('app','Tags'), 'url' => ['/tag']],
-            ['label' =>  Yii::t('app','Category'), 'url' => ['/category'], 'items' => $tree],
+            ['label' =>  Yii::t('app','Category'), 'url' => ['/category'], 'items' => []],
             ['label' =>  Yii::t('app','Permissions'), 'url' => '#',
                 'items' => [
                     ['label' => Yii::t('app','Roles'), 'url' => ['/permit/access/role']],
@@ -45,7 +45,7 @@ $tree = Category::menu($tree);
             ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
         ];
         ?>
-        <?= dmstr\widgets\Menu::widget(
+        <?php echo dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => $items

@@ -21,24 +21,24 @@ use common\models\Category;
             <?php if(! $model->isNewRecord): ?>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <? echo Yii::t("app","Actions")?><span class="caret"></span>
+                   <?php echo Yii::t("app","Actions")?><span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo $model->url('delete') ?>"><? echo Yii::t("app","Delete")?></a></li>
                 </ul>
             </li>
-            <? endif?>
+           <?php endif?>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="tab_about">
-                <?= $form->field($model, 'h1')->textInput(['maxlength' => true]) ?>
-                <?= $form->field($model, 'alias')->textInput(['maxlength' => true]) ?>
-                <?= $form->field($model, 'announce')->textarea(['rows' => 6]) ?>
-                <?= yii\imperavi\Widget::widget([
+               <?php echo $form->field($model, 'h1')->textInput(['maxlength' => true]) ?>
+               <?php echo $form->field($model, 'alias')->textInput(['maxlength' => true]) ?>
+               <?php echo $form->field($model, 'announce')->textarea(['rows' => 6]) ?>
+               <?php echo yii\imperavi\Widget::widget([
                 'model' => $model,
                 'attribute' => 'content',
                 ]);?>
-                <?= TreeViewInput::widget([
+               <?php echo TreeViewInput::widget([
                     'query' => Category::find()->addOrderBy('root, lft'),
                     'model' => $model,
                     'attribute' => 'category_id',
@@ -51,26 +51,26 @@ use common\models\Category;
                     'class'=>'text-success'
                     ],
                 ]); ?>
-                <?= $form->field($model, 'tags')->listBox(
+               <?php echo $form->field($model, 'tags')->listBox(
                     ArrayHelper::map($tags, 'id', 'tag'),['multiple' => true]
                 ) ?>
-                <?= $form->field($model, 'active')->checkbox() ?>
+               <?php echo $form->field($model, 'active')->checkbox() ?>
             </div>
             <div class="tab-pane" id="tab_picture">
-                <? if($model->preview): ?>
-                    <?= Html::img($model->getThumbUploadUrl('preview', 'small'), ['class' => 'img-thumbnail']) ?>
+               <?php if($model->preview): ?>
+                   <?php echo Html::img($model->getThumbUploadUrl('preview', 'small'), ['class' => 'img-thumbnail']) ?>
                 <?php endif ?>
-                <?= $form->field($model, 'preview')->fileInput(['accept' => 'image/*']) ?>
+               <?php echo $form->field($model, 'preview')->fileInput(['accept' => 'image/*']) ?>
             </div>
             <div class="tab-pane" id="tab_seo">
-                <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-                <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
-                <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
+               <?php echo $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+               <?php echo $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
+               <?php echo $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
             </div>
         </div>
     </div>
     <div class="box-footer">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success pull-right' : 'btn btn-primary pull-right']) ?>
+       <?php echo Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success pull-right' : 'btn btn-primary pull-right']) ?>
     </div>
 </div>
 <?php ActiveForm::end(); ?>
