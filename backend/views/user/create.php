@@ -20,8 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'username')->textInput() ?>
                     <?= $form->field($model, 'email')->textInput() ?>
                     <?= $form->field($model, 'password')->passwordInput() ?>
-                    <? //= $form->field($model, 'role')->dropDownList($roles) ?>
-                    <? //= $form->field($model, 'status')->dropDownList($statuses) ?>
+                    <?php //= $form->field($model, 'role')->dropDownList($roles) ?>
+                    <?php //= $form->field($model, 'status')->dropDownList($statuses) ?>
                     <div class="box-footer">
                         <?= Html::submitButton(Yii::t('app/user', 'Create'), ['class' => 'btn btn-success']) ?>
                     </div>

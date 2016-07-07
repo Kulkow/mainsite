@@ -26,7 +26,7 @@ $horizontalOptions = [
         <!-- Profile Image -->
         <div class="box box-primary">
             <div class="box-body box-profile">
-                <? if($model->preview): ?>
+                <?php if($model->preview): ?>
                     <?= Html::img($model->getThumbUploadUrl('preview', 'small'), ['class' => 'profile-user-img img-responsive img-circle']) ?>
                 <?php endif ?>
                 <h3 class="profile-username text-center"><?= $model->username ?></h3>

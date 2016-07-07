@@ -15,16 +15,16 @@ use common\models\Category;
 <div class="box-body">
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab_about" data-toggle="tab"><? echo Yii::t("app","About")?></a></li>
-            <li><a href="#tab_picture" data-toggle="tab"><? echo Yii::t("app","Picture")?></a></li>
-            <li><a href="#tab_seo" data-toggle="tab"><? echo Yii::t("app","Seo")?></a></li>
+            <li class="active"><a href="#tab_about" data-toggle="tab"><?php echo Yii::t("app","About")?></a></li>
+            <li><a href="#tab_picture" data-toggle="tab"><?php echo Yii::t("app","Picture")?></a></li>
+            <li><a href="#tab_seo" data-toggle="tab"><?php echo Yii::t("app","Seo")?></a></li>
             <?php if(! $model->isNewRecord): ?>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                    <?php echo Yii::t("app","Actions")?><span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo $model->url('delete') ?>"><? echo Yii::t("app","Delete")?></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo $model->url('delete') ?>"><?php echo Yii::t("app","Delete")?></a></li>
                 </ul>
             </li>
            <?php endif?>

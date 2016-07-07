@@ -12,31 +12,31 @@ use yii\widgets\ActiveForm;
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
             <li class="active">
-                <a href="#tab_about" data-toggle="tab"><? echo Yii::t("app","About")?></a>
+                <a href="#tab_about" data-toggle="tab"><?php echo Yii::t("app","About")?></a>
             </li>
-            <li><a href="#tab_picture" data-toggle="tab"><? echo Yii::t("app","Picture")?></a></li>
+            <li><a href="#tab_picture" data-toggle="tab"><?php echo Yii::t("app","Picture")?></a></li>
             <?php if(! $model->isNewRecord): ?>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <? echo Yii::t("app","Actions")?><span class="caret"></span>
+                        <?php echo Yii::t("app","Actions")?><span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li role="presentation">
-                            <a role="menuitem" tabindex="-1" href="<?php echo $model->url('delete') ?>"><? echo Yii::t("app","Delete")?></a>
+                            <a role="menuitem" tabindex="-1" href="<?php echo $model->url('delete') ?>"><?php echo Yii::t("app","Delete")?></a>
                         </li>
                     </ul>
                 </li>
-            <? endif?>
+            <?php endif?>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="tab_about">
                 <?= $form->field($model, 'username')->textInput() ?>
                 <?= $form->field($model, 'email')->textInput() ?>
-                <? //= $form->field($model, 'role')->dropDownList($roles) ?>
-                <? //= $form->field($model, 'status')->dropDownList($statuses) ?>
+                <?php //= $form->field($model, 'role')->dropDownList($roles) ?>
+                <?php //= $form->field($model, 'status')->dropDownList($statuses) ?>
             </div>
             <div class="tab-pane" id="tab_picture">
-                <? if($model->preview): ?>
+                <?php if($model->preview): ?>
                     <?= Html::img($model->getThumbUploadUrl('preview', 'small'), ['class' => 'img-thumbnail']) ?>
                 <?php endif ?>
                 <?= $form->field($model, 'preview')->fileInput(['accept' => 'image/*']) ?>

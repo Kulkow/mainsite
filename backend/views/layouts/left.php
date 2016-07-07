@@ -1,4 +1,4 @@
-<? use common\models\Category;
+<?php use common\models\Category;
 $tree = Category::find()->addOrderBy('root, lft')->all();
 $tree = Category::menu($tree);
 ?>

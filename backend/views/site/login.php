@@ -60,9 +60,9 @@ $fieldOptions2 = [
                 in using Google+</a>
         </div>
         <!-- /.social-auth-links -->
-        <? endif ?>
+        <?php endif ?>
 
-        <a href="<?php echo Url::to(['/site/forgot']) ?>"><? echo Yii::t('app', 'Forgot') ?></a><br>
+        <a href="<?php echo Url::to(['/site/forgot']) ?>"><?php echo Yii::t('app', 'Forgot') ?></a><br>
         <a href="register.html" class="text-center">Register a new membership</a>
 
     </div>

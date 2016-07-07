@@ -21,9 +21,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'alias') ?>
 
-    <? //= $form->field($model, 'count') ?>
+    <?php //= $form->field($model, 'count') ?>
 
-    <? //= $form->field($model, 'topics') ?>
+    <?php //= $form->field($model, 'topics') ?>
 
     <?php // echo $form->field($model, 'shares') ?>
 

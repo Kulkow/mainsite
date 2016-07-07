@@ -17,11 +17,11 @@ $fieldOptions2 = [
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="/admin"><? echo Yii::t('app', 'Site name') ?></a>
+        <a href="/admin"><?php echo Yii::t('app', 'Site name') ?></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg"><? echo Yii::t('app', 'Forgot title') ?></p>
+        <p class="login-box-msg"><?php echo Yii::t('app', 'Forgot title') ?></p>
 
         <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
 
@@ -38,7 +38,7 @@ $fieldOptions2 = [
             <!-- /.col -->
         </div>
         <?php ActiveForm::end(); ?>
-        <a href="<? echo Url::to(['/site/login']) ?>" class="text-center"><? echo Yii::t('app', 'Sign In') ?></a>
+        <a href="<?php echo Url::to(['/site/login']) ?>" class="text-center"><?php echo Yii::t('app', 'Sign In') ?></a>
     </div>
     <!-- /.login-box-body -->
 </div><!-- /.login-box -->
