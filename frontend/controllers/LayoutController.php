@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use Yii;
+use yii\base\Model;
 use yii\caching\TagDependency;
 use frontend\models\Cache;
 use yii\data\Pagination;

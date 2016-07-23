@@ -19,19 +19,14 @@ return [
             'defaultRoles' => ['user','moder','admin'],
         ],
         'cache' => [
-            'class' => 'yii\caching\MemCache',
-            'servers' => [
+            'class' => 'yii\caching\FileCache',
+            /*'servers' => [
                 [
                     'host' => 'localhost',
                     'port' => 11211,
                     'weight' => 100,
                 ],
-                /*[
-                    'host' => 'server2',
-                    'port' => 11211,
-                    'weight' => 50,
-                ],*/
-            ],
+            ],*/
         ],
     ],
 ];
