@@ -4,7 +4,7 @@ return [
     'aliases' => [
         '@uploadroot' => $_SERVER['DOCUMENT_ROOT'].'/upload',
         '@upload' => '/upload',
-        '@mainsite' => 'http'.($_SERVER['HTTPS'] ? 's' : '').'://'.$_SERVER['SERVER_NAME'],
+        '@mainsite' => 'http'.(! empty($_SERVER['HTTPS']) ? 's' : '').'://'.$_SERVER['SERVER_NAME'],
     ],
     'components' => [
         /*'authManager' => [
