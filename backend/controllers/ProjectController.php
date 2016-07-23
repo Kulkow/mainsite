@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * ProjectController implements the CRUD actions for Project model.
  */
-class ProjectController extends Controller
+class ProjectController extends AdminLayoutController
 {
     const STATUS_ACTIVE = 1;
     const STATUS_HIDE = 0;

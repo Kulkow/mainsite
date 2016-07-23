@@ -1,24 +1,17 @@
 <?php
 use yii\helpers\Html;
-
 /* @var $this \yii\web\View */
 /* @var $content string */
+$auth_user = $this->context->auth_user;
 ?>
-
 <header class="main-header">
-
     <?= Html::a('<span class="logo-mini">APP</span><span class="logo-lg">' . Yii::$app->name . '</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
-
     <nav class="navbar navbar-static-top" role="navigation">
-
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
         </a>
-
         <div class="navbar-custom-menu">
-
             <ul class="nav navbar-nav">
-
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -33,8 +26,7 @@ use yii\helpers\Html;
                                 <li><!-- start message -->
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle"
-                                                 alt="User Image"/>
+                                            <?php echo $auth_user->renderAvatar(['class' => 'img-circle']) ?>
                                         </div>
                                         <h4>
                                             Support Team
@@ -47,8 +39,7 @@ use yii\helpers\Html;
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="<?= $directoryAsset ?>/img/user3-128x128.jpg" class="img-circle"
-                                                 alt="user image"/>
+                                            <?php echo $auth_user->renderAvatar(['class' => 'img-circle']) ?>
                                         </div>
                                         <h4>
                                             AdminLTE Design Team
@@ -60,8 +51,7 @@ use yii\helpers\Html;
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="<?= $directoryAsset ?>/img/user4-128x128.jpg" class="img-circle"
-                                                 alt="user image"/>
+                                            <?php echo $auth_user->renderAvatar(['class' => 'img-circle']) ?>
                                         </div>
                                         <h4>
                                             Developers
@@ -73,8 +63,7 @@ use yii\helpers\Html;
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="<?= $directoryAsset ?>/img/user3-128x128.jpg" class="img-circle"
-                                                 alt="user image"/>
+                                            <?php echo $auth_user->renderAvatar(['class' => 'img-circle']) ?>
                                         </div>
                                         <h4>
                                             Sales Department
@@ -86,8 +75,7 @@ use yii\helpers\Html;
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="<?= $directoryAsset ?>/img/user4-128x128.jpg" class="img-circle"
-                                                 alt="user image"/>
+                                            <?php echo $auth_user->renderAvatar(['class' => 'img-circle']) ?>
                                         </div>
                                         <h4>
                                             Reviewers
@@ -229,15 +217,13 @@ use yii\helpers\Html;
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
+                        <?php echo $auth_user->renderAvatar(['class' => 'user-image']) ?>
                         <span class="hidden-xs">Alexander Pierce</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle"
-                                 alt="User Image"/>
-
+                            <?php echo $auth_user->renderAvatar(['class' => 'user-image']) ?>
                             <p>
                                 Alexander Pierce - Web Developer
                                 <small>Member since Nov. 2012</small>

@@ -7,7 +7,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 
 /**
- * Site controller
+ * AdminController controller
  */
 class AdminController extends Controller
 {

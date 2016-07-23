@@ -14,7 +14,12 @@ use yii\widgets\ActiveForm;
             <li class="active">
                 <a href="#tab_about" data-toggle="tab"><?php echo Yii::t("app","About")?></a>
             </li>
-            <li><a href="#tab_picture" data-toggle="tab"><?php echo Yii::t("app","Picture")?></a></li>
+            <li>
+                <a href="#tab_profile" data-toggle="tab"><?php echo Yii::t("app","Profile")?></a>
+            </li>
+            <li>
+                <a href="#tab_picture" data-toggle="tab"><?php echo Yii::t("app","Picture")?></a>
+            </li>
             <?php if(! $model->isNewRecord): ?>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -30,10 +35,15 @@ use yii\widgets\ActiveForm;
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="tab_about">
-                <?= $form->field($model, 'username')->textInput() ?>
-                <?= $form->field($model, 'email')->textInput() ?>
+                <?php echo $form->field($model, 'username')->textInput() ?>
+                <?php echo $form->field($model, 'email')->textInput() ?>
                 <?php //= $form->field($model, 'role')->dropDownList($roles) ?>
                 <?php //= $form->field($model, 'status')->dropDownList($statuses) ?>
+            </div>
+            <div class="tab-pane" id="tab_profile">
+                <?php  echo $form->field($profile, 'fio')->textInput() ?>
+                <?php  echo $form->field($profile, 'profile')->textarea() ?>
+                <?php  echo $form->field($profile, 'gender')->dropDownList([1 => 'M', 2 => 'W']) ?>
             </div>
             <div class="tab-pane" id="tab_picture">
                 <?php if($model->preview): ?>

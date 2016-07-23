@@ -1,6 +1,7 @@
 <?php use common\models\Category;
 $tree = Category::find()->addOrderBy('root, lft')->all();
 $tree = Category::menu($tree);
+$auth_user = $this->context->auth_user;
 ?>
 <aside class="main-sidebar">
     <section class="sidebar">
@@ -8,7 +9,7 @@ $tree = Category::menu($tree);
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+                <?php echo $auth_user->renderAvatar(['class' => 'img-circle']) ?>
             </div>
             <div class="pull-left info">
                 <p>Alexander Pierce</p>

@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * TagController implements the CRUD actions for Tag model.
  */
-class TagController extends AdminController
+class TagController extends AdminLayoutController
 {
     public function behaviors()
     {

@@ -14,7 +14,7 @@ use yii\filters\VerbFilter;
 /**
  * TopicController implements the CRUD actions for Topic model.
  */
-class TopicController extends AdminController
+class TopicController extends AdminLayoutController
 {
     public function behaviors()
     {

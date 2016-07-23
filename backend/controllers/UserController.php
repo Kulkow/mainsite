@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use common\models\User;
+use common\models\UserProfile;
 use common\models\UserSearch;
 use backend\models\CreateUserForm;
 use yii\web\Controller;
@@ -13,7 +14,7 @@ use yii\filters\VerbFilter;
 /**
  * UserController implements the CRUD actions for User model.
  */
-class UserController extends Controller
+class UserController extends AdminLayoutController
 {
     public function behaviors()
     {
@@ -49,8 +50,16 @@ class UserController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        if($model->profile){
+            $profile = $model->profile;
+        }else{
+            $profile = new UserProfile();
+            $profile->user_id = $model->id;
+        }
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'profile' => $profile,
         ]);
     }
 
@@ -87,11 +96,22 @@ class UserController extends Controller
     {
         $model = $this->findModel($id);
         $model->setScenario('update');
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if($model->profile){
+            $profile = $model->profile;
+        }else{
+            $profile = new UserProfile();
+            $profile->user_id = $model->id;
+        }
+        $post = Yii::$app->request->post();
+        if ($model->load($post) && $model->save()) {
+            if ($profile->load($post) && $profile->save()) {
+
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'profile' => $profile
             ]);
         }
     }

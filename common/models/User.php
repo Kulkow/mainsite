@@ -8,6 +8,7 @@ use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 use common\behaviors\UploadImage;
 use yii\helpers\Url;
+use yii\helpers\Html;
 
 /**
  * User model
@@ -31,6 +32,8 @@ class User extends ActiveRecord implements IdentityInterface
     const ROLE_USER = 1;
     const ROLE_MODER = 5;
     const ROLE_ADMIN = 10;
+
+    protected $profile = null;
 
     /**
      * @inheritdoc
@@ -63,7 +66,7 @@ class User extends ActiveRecord implements IdentityInterface
                 'thumbUrl' => '@upload/user/{id}/thumb',
                 'thumbs' => [
                     'big' => ['width' => 400, 'quality' => 90],
-                    'small' => ['width' => 200, 'height' => 200],
+                    'small' => ['width' => 200, 'height' => 200, 'crop' => true],
                 ],
             ],
         ];
@@ -226,6 +229,11 @@ class User extends ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
 
+    public function getProfile()
+    {
+        return $this->hasOne(UserProfile::className(), ['user_id' => 'id']);
+    }
+
     /**
      * @param string $action
      * @return string
@@ -235,4 +243,10 @@ class User extends ActiveRecord implements IdentityInterface
         $url = '/user'.($action ? '/'.$action : '');
         return Url::to([$url, 'id' => $this->id]);
     }
+
+    public function renderAvatar(array $options = [], $profile = 'small'){
+        $avatar = $this->getThumbUploadUrl('preview', $profile);
+        return Html::img($avatar, $options);
+    }
+
 }

@@ -27,7 +27,7 @@ $horizontalOptions = [
         <div class="box box-primary">
             <div class="box-body box-profile">
                 <?php if($model->preview): ?>
-                    <?= Html::img($model->getThumbUploadUrl('preview', 'small'), ['class' => 'profile-user-img img-responsive img-circle']) ?>
+                    <?php echo Html::img($model->getThumbUploadUrl('preview', 'small'), ['class' => 'profile-user-img img-responsive img-circle']) ?>
                 <?php endif ?>
                 <h3 class="profile-username text-center"><?= $model->username ?></h3>
 
@@ -193,10 +193,14 @@ $horizontalOptions = [
                 <!-- /.tab-pane -->
 
                 <div class="tab-pane" id="settings">
+                    <?php $profile = $model->profile; ?>
                     <?php $form = ActiveForm::begin(['action' => $model->url('update'),'options' => ['enctype' => 'multipart/form-data', 'class' => 'form-horizontal']]); ?>
-                    <?= $form->field($model, 'username', $horizontalOptions)->textInput() ?>
-                    <?= $form->field($model, 'email',$horizontalOptions)->textInput() ?>
-                    <?= $form->field($model, 'preview', $horizontalOptions)->fileInput(['accept' => 'image/*']) ?>
+                    <?php echo $form->field($model, 'username', $horizontalOptions)->textInput() ?>
+                    <?php echo $form->field($model, 'email',$horizontalOptions)->textInput() ?>
+                    <?php echo $form->field($profile, 'fio',$horizontalOptions)->textInput() ?>
+                    <?php echo $form->field($profile, 'profile',$horizontalOptions)->textarea() ?>
+                    <?php echo $form->field($profile, 'gender',$horizontalOptions)->dropDownList([1 => 'M', 2 => 'W']) ?>
+                    <?php echo  $form->field($model, 'preview', $horizontalOptions)->fileInput(['accept' => 'image/*']) ?>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <?= Html::submitButton(Yii::t('app/user', 'Update'), ['class' => 'btn btn-primary']) ?>

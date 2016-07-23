@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = Yii::t('app/user', 'Update');
         <div class="box box-primary">
             <?= $this->render('_form', [
                 'model' => $model,
+                'profile' => $profile
             ]) ?>
         </div>
     </div>
