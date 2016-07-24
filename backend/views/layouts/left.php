@@ -5,15 +5,13 @@ $auth_user = $this->context->auth_user;
 ?>
 <aside class="main-sidebar">
     <section class="sidebar">
-
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
                 <?php echo $auth_user->renderAvatar(['class' => 'img-circle']) ?>
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
-
+                <p><?php echo $auth_user->getFullName(); ?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>

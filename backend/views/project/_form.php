@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\tree\TreeViewInput;
+use common\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Project */
@@ -38,6 +40,19 @@ use yii\widgets\ActiveForm;
                 ]);?>
             </div>
             <div class="tab-pane" id="tab_category">
+                <?php echo TreeViewInput::widget([
+                    'query' => Category::find()->addOrderBy('root, lft'),
+                    'model' => $model,
+                    'attribute' => 'category_id',
+                    'headingOptions'=>['label'=> Yii::t('app','Category')],
+                    'asDropdown' => true,   // will render the tree input widget as a dropdown.
+                    'multiple' => false,     // set to false if you do not need multiple selection
+                    'fontAwesome' => true,  // render font awesome icons
+                    'rootOptions' => [
+                        'label'=>'<i class="fa fa-tree"></i>',  // custom root label
+                        'class'=>'text-success'
+                    ],
+                ]); ?>
             </div>
             <div class="tab-pane" id="tab_picture">
                 <?php if($model->preview): ?>

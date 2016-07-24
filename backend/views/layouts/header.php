@@ -218,14 +218,14 @@ $auth_user = $this->context->auth_user;
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <?php echo $auth_user->renderAvatar(['class' => 'user-image']) ?>
-                        <span class="hidden-xs">Alexander Pierce</span>
+                        <span class="hidden-xs"><?php echo $auth_user->getFullName(); ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
                             <?php echo $auth_user->renderAvatar(['class' => 'user-image']) ?>
                             <p>
-                                Alexander Pierce - Web Developer
+                                <?php echo $auth_user->getFullName(); ?>
                                 <small>Member since Nov. 2012</small>
                             </p>
                         </li>
@@ -244,7 +244,7 @@ $auth_user = $this->context->auth_user;
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <a href="<?php echo $auth_user->url('view') ?>" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
                                 <?= Html::a(
@@ -256,7 +256,6 @@ $auth_user = $this->context->auth_user;
                         </li>
                     </ul>
                 </li>
-
                 <!-- User Account: style can be found in dropdown.less -->
                 <li>
                     <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>

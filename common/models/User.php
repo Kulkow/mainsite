@@ -91,7 +91,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+        return $findIdentity = static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -247,6 +247,16 @@ class User extends ActiveRecord implements IdentityInterface
     public function renderAvatar(array $options = [], $profile = 'small'){
         $avatar = $this->getThumbUploadUrl('preview', $profile);
         return Html::img($avatar, $options);
+    }
+
+    public function getFullName(){
+        if($this->profile === null){
+            $this->profile = $this->getProfile()->one();
+        }
+        if($this->profile){
+            return $this->profile->fio;
+        }
+        return $this->username;
     }
 
 }

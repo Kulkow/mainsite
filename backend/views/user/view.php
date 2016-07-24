@@ -22,7 +22,6 @@ $horizontalOptions = [
 ?>
 <div class="row">
     <div class="col-md-3">
-
         <!-- Profile Image -->
         <div class="box box-primary">
             <div class="box-body box-profile">
@@ -30,9 +29,7 @@ $horizontalOptions = [
                     <?php echo Html::img($model->getThumbUploadUrl('preview', 'small'), ['class' => 'profile-user-img img-responsive img-circle']) ?>
                 <?php endif ?>
                 <h3 class="profile-username text-center"><?= $model->username ?></h3>
-
                 <p class="text-muted text-center">Software Engineer</p>
-
                 <ul class="list-group list-group-unbordered">
                     <li class="list-group-item">
                         <b>Followers</b> <a class="pull-right">1,322</a>
@@ -44,13 +41,11 @@ $horizontalOptions = [
                         <b>Friends</b> <a class="pull-right">13,287</a>
                     </li>
                 </ul>
-
                 <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
             </div>
             <!-- /.box-body -->
         </div>
         <!-- /.box -->
-
         <!-- About Me Box -->
         <div class="box box-primary">
             <div class="box-header with-border">
@@ -92,8 +87,6 @@ $horizontalOptions = [
             </ul>
             <div class="tab-content">
                 <div class="active tab-pane" id="activity">
-
-
                 </div>
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="timeline">
@@ -191,7 +184,6 @@ $horizontalOptions = [
                     </ul>
                 </div>
                 <!-- /.tab-pane -->
-
                 <div class="tab-pane" id="settings">
                     <?php $profile = $model->profile; ?>
                     <?php $form = ActiveForm::begin(['action' => $model->url('update'),'options' => ['enctype' => 'multipart/form-data', 'class' => 'form-horizontal']]); ?>

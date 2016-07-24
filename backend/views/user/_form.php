@@ -42,7 +42,10 @@ use yii\widgets\ActiveForm;
             </div>
             <div class="tab-pane" id="tab_profile">
                 <?php  echo $form->field($profile, 'fio')->textInput() ?>
-                <?php  echo $form->field($profile, 'profile')->textarea() ?>
+                <?php echo yii\imperavi\Widget::widget([
+                    'model' => $profile,
+                    'attribute' => 'profile',
+                ]);?>
                 <?php  echo $form->field($profile, 'gender')->dropDownList([1 => 'M', 2 => 'W']) ?>
             </div>
             <div class="tab-pane" id="tab_picture">

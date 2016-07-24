@@ -3,6 +3,8 @@ namespace backend\controllers;
 
 use Yii;
 use yii\web\Controller;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 
 
 /**
@@ -15,9 +17,34 @@ class AdminLayoutController extends Controller
         parent::init();
         if($user = Yii::$app->getUser()){
             $this->auth_user = $user->identity;
-            //Yii::$app->view->params['auth_user'] = $user->identity;
         }
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['logout', 'index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
+    }
+
     public function error($key, $message = NULL){
         if(is_numeric($key)){
             switch($key){

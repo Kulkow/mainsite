@@ -8,6 +8,8 @@ use common\models\Tag;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\controllers\AdminLayoutController;
+
 
 
 
@@ -16,9 +18,18 @@ use yii\filters\VerbFilter;
  */
 class CategoryController extends \kartik\tree\controllers\NodeController
 {
+    public $auth_user = null;
+
+    public function init(){
+        parent::init();
+        if($user = Yii::$app->getUser()){
+            $this->auth_user = $user->identity;
+        }
+    }
+
     public function behaviors()
     {
-        return AdminController::behaviors();
+        return AdminLayoutController::behaviors();
     }
 
     /**
