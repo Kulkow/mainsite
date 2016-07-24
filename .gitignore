@@ -3,7 +3,7 @@
 
 # phpstorm project files
 .idea
-common/config/main-local.php
+# common/config/main-local.php
 
 # netbeans project files
 nbproject
