@@ -51,11 +51,11 @@ class UserController extends AdminLayoutController
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        if($model->profile){
-            $profile = $model->profile;
-        }else{
+        if($model->profile == null){
             $profile = new UserProfile();
             $profile->user_id = $model->id;
+        }else{
+            $profile = $model->profile;
         }
         return $this->render('view', [
             'model' => $model,
