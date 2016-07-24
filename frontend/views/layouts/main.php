@@ -27,7 +27,7 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => 'My Company',
+                'brandLabel' => 'K1785',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
@@ -74,11 +74,12 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-        <p class="pull-left">&copy; My Company <?php echo date('Y') ?></p>
-        <p class="pull-right"><?php echo Yii::powered() ?></p>
+        <p class="pull-left">&copy; Kulkov Igor <?php echo date('Y') ?></p>
+        <p class="pull-right">
+            <a href="mailto:k1785.penza@gmail.com" title="k1785.penza@gmail.com">k1785.penza@gmail.com</a>
+        </p>
         </div>
     </footer>
-
     <?php $this->endBody() ?>
 </body>
 </html>
